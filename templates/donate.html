@@ -1,0 +1,410 @@
+<!-- templates/donate.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container py-4">
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-primary mb-3">
+            <i class="fas fa-heart text-danger me-3"></i>Support Our Initiative
+        </h1>
+        <p class="lead text-muted">
+            Help us empower 80-100 young women in East Africa with blockchain and cryptocurrency skills
+        </p>
+        <div class="mt-3">
+            <span class="badge bg-primary p-3 fs-6">
+                <i class="fas fa-flag-checkered me-2"></i>Goal: KES 250,000 / $1,800 USD
+            </span>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="card shadow-sm mb-5">
+        <div class="card-body">
+            <div class="d-flex justify-content-between mb-2">
+                <span class="fw-bold">Fundraising Progress</span>
+                <span class="text-primary fw-bold">45% Funded</span>
+            </div>
+            <div class="progress" style="height: 25px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" 
+                     role="progressbar" 
+                     style="width: 45%;" 
+                     aria-valuenow="45" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100">
+                    <strong>KES 112,500 raised</strong>
+                </div>
+            </div>
+            <p class="text-muted text-center mt-3 mb-0">
+                <i class="fas fa-info-circle me-2"></i>
+                Every contribution helps us provide training materials, certificates, and support for our participants
+            </p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- PayPal Donation Card -->
+        <div class="col-lg-6">
+            <div class="card h-100 shadow-lg border-0">
+                <div class="card-header bg-primary text-white py-3">
+                    <h4 class="mb-0">
+                        <i class="fab fa-paypal me-2"></i>Donate via PayPal
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" 
+                             alt="PayPal" 
+                             class="img-fluid mb-3">
+                        <p class="text-muted">
+                            Secure donations via PayPal - credit/debit cards accepted
+                        </p>
+                    </div>
+
+                    <!-- Donation Amount Options -->
+                    <div class="row g-2 mb-4">
+                        <div class="col-4">
+                            <button class="btn btn-outline-primary w-100 donation-preset" data-amount="10">
+                                $10 USD
+                            </button>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-outline-primary w-100 donation-preset" data-amount="25">
+                                $25 USD
+                            </button>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-outline-primary w-100 donation-preset" data-amount="50">
+                                $50 USD
+                            </button>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <button class="btn btn-outline-primary w-100 donation-preset" data-amount="100">
+                                $100 USD
+                            </button>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <button class="btn btn-outline-primary w-100 donation-preset" data-amount="500">
+                                $500 USD
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Custom Amount Input -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Or enter custom amount:</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" id="customAmount" class="form-control" min="1" step="1" placeholder="Enter amount">
+                            <span class="input-group-text">USD</span>
+                        </div>
+                    </div>
+
+                    <!-- PayPal Button -->
+                    <div class="text-center">
+                        <form action="https://www.paypal.com/donate" method="post" target="_top" id="paypalForm">
+                            <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID">
+                            <input type="hidden" name="amount" id="paypalAmount" value="">
+                            <input type="hidden" name="currency_code" value="USD">
+                            
+                            <button type="submit" class="btn btn-primary btn-lg w-100 mb-3" id="donateButton">
+                                <i class="fab fa-paypal me-2"></i>Donate with PayPal
+                            </button>
+                        </form>
+                        
+                        <p class="text-muted small mb-0">
+                            <i class="fas fa-lock me-1"></i>
+                            Secure payment processed by PayPal
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cryptocurrency Donation Card -->
+        <div class="col-lg-6">
+            <div class="card h-100 shadow-lg border-0">
+                <div class="card-header bg-dark text-white py-3">
+                    <h4 class="mb-0">
+                        <i class="fab fa-bitcoin me-2"></i>Donate Cryptocurrency
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-center text-muted mb-4">
+                        Support us with crypto - fast, secure, and low-fee transactions
+                    </p>
+
+                    <!-- Bitcoin -->
+                    <div class="crypto-address-card mb-4 p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fab fa-bitcoin text-warning fa-2x me-3"></i>
+                            <h5 class="mb-0">Bitcoin (BTC)</h5>
+                        </div>
+                        <div class="input-group mb-2">
+                            <input type="text" class="form-control bg-light" id="btcAddress" 
+                                   value="bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" readonly>
+                            <button class="btn btn-outline-primary" type="button" onclick="copyAddress('btcAddress')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" 
+                                 alt="BTC QR Code" 
+                                 class="img-fluid mb-2 crypto-qr"
+                                 style="max-width: 150px;">
+                        </div>
+                    </div>
+
+                    <!-- Ethereum -->
+                    <div class="crypto-address-card mb-4 p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fab fa-ethereum text-primary fa-2x me-3"></i>
+                            <h5 class="mb-0">Ethereum (ETH)</h5>
+                        </div>
+                        <div class="input-group mb-2">
+                            <input type="text" class="form-control bg-light" id="ethAddress" 
+                                   value="0x742d35Cc6634C0532925a3b844BcC54e50f8eC5d" readonly>
+                            <button class="btn btn-outline-primary" type="button" onclick="copyAddress('ethAddress')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=0x742d35Cc6634C0532925a3b844BcC54e50f8eC5d" 
+                                 alt="ETH QR Code" 
+                                 class="img-fluid mb-2 crypto-qr"
+                                 style="max-width: 150px;">
+                        </div>
+                    </div>
+
+                    <!-- USDT (Tron) -->
+                    <div class="crypto-address-card p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-dollar-sign text-success fa-2x me-3"></i>
+                            <h5 class="mb-0">USDT (TRC-20)</h5>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light" id="usdtAddress" 
+                                   value="TXYZ1234567890abcdefghijklmnopqrstuvwxyz" readonly>
+                            <button class="btn btn-outline-primary" type="button" onclick="copyAddress('usdtAddress')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Impact Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card shadow-sm border-primary">
+                <div class="card-body">
+                    <h4 class="text-center text-primary mb-4">
+                        <i class="fas fa-chart-line me-2"></i>Your Impact
+                    </h4>
+                    <div class="row text-center">
+                        <div class="col-md-4 mb-3">
+                            <div class="impact-item p-3">
+                                <i class="fas fa-graduation-cap fa-3x text-success mb-3"></i>
+                                <h5>$25 provides training materials</h5>
+                                <p class="text-muted">for one participant</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="impact-item p-3">
+                                <i class="fas fa-certificate fa-3x text-info mb-3"></i>
+                                <h5>$50 covers certification</h5>
+                                <p class="text-muted">and workshop completion certificate</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="impact-item p-3">
+                                <i class="fas fa-laptop fa-3x text-warning mb-3"></i>
+                                <h5>$100 sponsors one woman</h5>
+                                <p class="text-muted">full workshop access + mentorship</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trust Badges -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center align-items-center flex-wrap gap-4">
+                        <span class="text-muted">
+                            <i class="fas fa-shield-alt text-success me-2"></i>Secure
+                        </span>
+                        <span class="text-muted">
+                            <i class="fas fa-lock text-success me-2"></i>Encrypted
+                        </span>
+                        <span class="text-muted">
+                            <i class="fas fa-credit-card text-success me-2"></i>Card Accepted
+                        </span>
+                        <span class="text-muted">
+                            <i class="fas fa-bitcoin text-success me-2"></i>Crypto Accepted
+                        </span>
+                        <span class="text-muted">
+                            <i class="fas fa-receipt text-success me-2"></i>Tax Deductible
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact for Large Donations -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card text-center border-warning">
+                <div class="card-body">
+                    <h5 class="text-warning">
+                        <i class="fas fa-star me-2"></i>Interested in Corporate Sponsorship?
+                    </h5>
+                    <p class="mb-3">For donations over $1,000 USD or KES 100,000, please contact us for partnership opportunities</p>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline-warning">
+                        <i class="fas fa-handshake me-2"></i>Become a Partner
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Donation Functionality -->
+<script>
+// Handle donation amount selection
+document.addEventListener('DOMContentLoaded', function() {
+    const presetButtons = document.querySelectorAll('.donation-preset');
+    const customAmount = document.getElementById('customAmount');
+    const paypalAmount = document.getElementById('paypalAmount');
+    const donateButton = document.getElementById('donateButton');
+    
+    // Set amount from preset
+    presetButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const amount = this.dataset.amount;
+            
+            // Remove active class from all buttons
+            presetButtons.forEach(btn => btn.classList.remove('active', 'btn-primary'));
+            presetButtons.forEach(btn => btn.classList.add('btn-outline-primary'));
+            
+            // Add active class to clicked button
+            this.classList.remove('btn-outline-primary');
+            this.classList.add('active', 'btn-primary');
+            
+            // Update amount
+            customAmount.value = amount;
+            paypalAmount.value = amount;
+        });
+    });
+    
+    // Handle custom amount input
+    customAmount.addEventListener('input', function() {
+        const amount = this.value;
+        paypalAmount.value = amount;
+        
+        // Remove active class from all preset buttons
+        presetButtons.forEach(btn => {
+            btn.classList.remove('active', 'btn-primary');
+            btn.classList.add('btn-outline-primary');
+        });
+    });
+    
+    // Validate amount before submit
+    donateButton.addEventListener('click', function(e) {
+        const amount = paypalAmount.value;
+        if (!amount || amount <= 0) {
+            e.preventDefault();
+            alert('Please select or enter a donation amount');
+        }
+    });
+});
+
+// Copy cryptocurrency addresses
+function copyAddress(elementId) {
+    const addressInput = document.getElementById(elementId);
+    addressInput.select();
+    addressInput.setSelectionRange(0, 99999); // For mobile devices
+    
+    try {
+        document.execCommand('copy');
+        
+        // Show temporary success message
+        const originalButton = event.target;
+        const buttonText = originalButton.innerHTML;
+        originalButton.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        
+        setTimeout(() => {
+            originalButton.innerHTML = '<i class="fas fa-copy"></i>';
+        }, 2000);
+        
+    } catch (err) {
+        alert('Please copy the address manually');
+    }
+}
+
+// Add animation to QR codes on hover
+document.querySelectorAll('.crypto-qr').forEach(qr => {
+    qr.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.1)';
+        this.style.transition = 'transform 0.3s';
+    });
+    
+    qr.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+    });
+});
+</script>
+
+<!-- Additional CSS -->
+<style>
+.donation-preset.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.crypto-address-card {
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.crypto-address-card:hover {
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.impact-item {
+    transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+.impact-item:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-5px);
+}
+
+.crypto-qr {
+    transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+.progress-bar {
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+}
+</style>
+
+{% endblock %}

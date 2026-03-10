@@ -1,0 +1,741 @@
+<!-- templates/schedule.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-primary mb-3">
+            <i class="fas fa-calendar-alt me-3"></i>2024 Activity Calendar
+        </h1>
+        <p class="lead text-muted">
+            Join us throughout the year for workshops, webinars, and community events
+        </p>
+        <div class="mt-3">
+            <span class="badge bg-primary p-3 fs-6">
+                <i class="fas fa-flag-checkered me-2"></i>Pilot Program Launch: June 2024
+            </span>
+        </div>
+    </div>
+
+    <!-- Year Overview Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white h-100">
+                <div class="card-body text-center">
+                    <h3 class="display-4 fw-bold">4</h3>
+                    <p class="mb-0">Workshops</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white h-100">
+                <div class="card-body text-center">
+                    <h3 class="display-4 fw-bold">6</h3>
+                    <p class="mb-0">Webinars</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white h-100">
+                <div class="card-body text-center">
+                    <h3 class="display-4 fw-bold">12</h3>
+                    <p class="mb-0">Mentorship Sessions</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white h-100">
+                <div class="card-body text-center">
+                    <h3 class="display-4 fw-bold">3</h3>
+                    <p class="mb-0">Networking Events</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar Navigation -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="btn-group w-100" role="group">
+                <button class="btn btn-outline-primary active" onclick="filterMonth('all')">All Events</button>
+                <button class="btn btn-outline-primary" onclick="filterMonth('Q1')">Q1 2024</button>
+                <button class="btn btn-outline-primary" onclick="filterMonth('Q2')">Q2 2024</button>
+                <button class="btn btn-outline-primary" onclick="filterMonth('Q3')">Q3 2024</button>
+                <button class="btn btn-outline-primary" onclick="filterMonth('Q4')">Q4 2024</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline View -->
+    <div class="timeline mb-5">
+        <!-- Q1 2024 -->
+        <div class="quarter-section mb-4" data-quarter="Q1">
+            <h3 class="text-primary mb-4">
+                <i class="fas fa-snowflake me-2"></i>Quarter 1: Foundation (Jan - Mar 2024)
+            </h3>
+            
+            <div class="row g-4">
+                <!-- January -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm schedule-card">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">January</h5>
+                            <span class="badge bg-light text-primary">Planning</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Jan 15</span>
+                                </div>
+                                <h6>Curriculum Development Workshop</h6>
+                                <p class="text-muted small">Finalize training materials and resources</p>
+                            </div>
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Jan 25</span>
+                                </div>
+                                <h6>Train-the-Trainers Session</h6>
+                                <p class="text-muted small">Prepare mentors and facilitators</p>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Jan 30</span>
+                                </div>
+                                <h6>Registration Portal Launch</h6>
+                                <p class="text-muted small">Open applications for pilot program</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- February -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm schedule-card">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">February</h5>
+                            <span class="badge bg-light text-primary">Recruitment</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Feb 1-28</span>
+                                </div>
+                                <h6>Participant Applications Open</h6>
+                                <p class="text-muted small">First round of applications</p>
+                            </div>
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Feb 10</span>
+                                </div>
+                                <h6>Info Session Webinar</h6>
+                                <p class="text-muted small">Introduction to the program (Zoom)</p>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Feb 20</span>
+                                </div>
+                                <h6>Community Outreach Event</h6>
+                                <p class="text-muted small">Kajiado County meetup</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- March -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm schedule-card">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">March</h5>
+                            <span class="badge bg-light text-primary">Selection</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Mar 5-15</span>
+                                </div>
+                                <h6>Application Review</h6>
+                                <p class="text-muted small">Selection committee meetings</p>
+                            </div>
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Mar 20</span>
+                                </div>
+                                <h6>Interview Day</h6>
+                                <p class="text-muted small">Shortlisted candidates interviews</p>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Mar 30</span>
+                                </div>
+                                <h6>Acceptance Notifications</h6>
+                                <p class="text-muted small">Selected participants announced</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q2 2024 -->
+        <div class="quarter-section mb-4" data-quarter="Q2">
+            <h3 class="text-primary mb-4">
+                <i class="fas fa-seedling me-2"></i>Quarter 2: Pilot Program (Apr - Jun 2024)
+            </h3>
+            
+            <div class="row g-4">
+                <!-- April -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm schedule-card">
+                        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">April</h5>
+                            <span class="badge bg-light text-success">Preparation</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Apr 5</span>
+                                </div>
+                                <h6>Welcome Webinar</h6>
+                                <p class="text-muted small">Introduction for selected participants</p>
+                            </div>
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Apr 12</span>
+                                </div>
+                                <h6>Pre-workshop Survey</h6>
+                                <p class="text-muted small">Baseline knowledge assessment</p>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Apr 20</span>
+                                </div>
+                                <h6>Tech Setup Session</h6>
+                                <p class="text-muted small">Wallet installation and configuration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- May -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm schedule-card">
+                        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">May</h5>
+                            <span class="badge bg-light text-success">Pre-training</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">May 4</span>
+                                </div>
+                                <h6>Blockchain 101 Webinar</h6>
+                                <p class="text-muted small">Pre-workshop fundamentals</p>
+                            </div>
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">May 11</span>
+                                </div>
+                                <h6>Security Basics Workshop</h6>
+                                <p class="text-muted small">Online safety and best practices</p>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">May 18</span>
+                                </div>
+                                <h6>Q&A Session</h6>
+                                <p class="text-muted small">Open forum with trainers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- June (Pilot Workshop) -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm schedule-card highlight-card">
+                        <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">June</h5>
+                            <span class="badge bg-light text-warning">PILOT</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-danger me-2"></i>
+                                    <span class="fw-bold">June 10-12</span>
+                                </div>
+                                <h6>Day 1: Demystifying Blockchain</h6>
+                                <p class="text-muted small">9:00 AM - 4:00 PM | Nairobi</p>
+                                <ul class="small">
+                                    <li>Introduction to blockchain</li>
+                                    <li>Cryptocurrency basics</li>
+                                    <li>Hands-on explorers</li>
+                                </ul>
+                            </div>
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-danger me-2"></i>
+                                    <span class="fw-bold">June 11</span>
+                                </div>
+                                <h6>Day 2: Hands-On Crypto</h6>
+                                <p class="text-muted small">9:00 AM - 4:00 PM | Nairobi</p>
+                                <ul class="small">
+                                    <li>Wallet setup</li>
+                                    <li>Test transactions</li>
+                                    <li>Security masterclass</li>
+                                </ul>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-danger me-2"></i>
+                                    <span class="fw-bold">June 12</span>
+                                </div>
+                                <h6>Day 3: Future in Web3</h6>
+                                <p class="text-muted small">9:00 AM - 4:00 PM | Nairobi</p>
+                                <ul class="small">
+                                    <li>Career panel</li>
+                                    <li>Networking</li>
+                                    <li>Graduation ceremony</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q3 2024 -->
+        <div class="quarter-section mb-4" data-quarter="Q3">
+            <h3 class="text-primary mb-4">
+                <i class="fas fa-chart-line me-2"></i>Quarter 3: Growth & Mentorship (Jul - Sep 2024)
+            </h3>
+            
+            <div class="row g-4">
+                <!-- July -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm schedule-card">
+                        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">July</h5>
+                            <span class="badge bg-light text-info">Mentorship</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">July 1</span>
+                                </div>
+                                <h6>Mentorship Program Launch</h6>
+                                <p class="text-muted small">Mentor-mentee pairing</p>
+                            </div>
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">July 15</span>
+                                </div>
+                                <h6>DeFi 101 Webinar</h6>
+                                <p class="text-muted small">Introduction to DeFi</p>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">July 29</span>
+                                </div>
+                                <h6>Monthly Networking Mixer</h6>
+                                <p class="text-muted small">Virtual meetup</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- August -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm schedule-card">
+                        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">August</h5>
+                            <span class="badge bg-light text-info">Advanced Topics</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Aug 5</span>
+                                </div>
+                                <h6>NFTs for Creators</h6>
+                                <p class="text-muted small">Workshop on digital art and collectibles</p>
+                            </div>
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Aug 19</span>
+                                </div>
+                                <h6>DAOs Explained</h6>
+                                <p class="text-muted small">Decentralized Autonomous Organizations</p>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Aug 26</span>
+                                </div>
+                                <h6>Women in Web3 Panel</h6>
+                                <p class="text-muted small">Industry leaders share experiences</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- September -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm schedule-card">
+                        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">September</h5>
+                            <span class="badge bg-light text-info">Practical Skills</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Sep 9</span>
+                                </div>
+                                <h6>Trading Basics</h6>
+                                <p class="text-muted small">Understanding exchanges and markets</p>
+                            </div>
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Sep 16</span>
+                                </div>
+                                <h6>Smart Contract Workshop</h6>
+                                <p class="text-muted small">Introduction to coding</p>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Sep 30</span>
+                                </div>
+                                <h6>Quarterly Review</h6>
+                                <p class="text-muted small">Progress assessment and feedback</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q4 2024 -->
+        <div class="quarter-section mb-4" data-quarter="Q4">
+            <h3 class="text-primary mb-4">
+                <i class="fas fa-trophy me-2"></i>Quarter 4: Expansion (Oct - Dec 2024)
+            </h3>
+            
+            <div class="row g-4">
+                <!-- October -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm schedule-card">
+                        <div class="card-header bg-purple text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">October</h5>
+                            <span class="badge bg-light text-purple">Expansion</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Oct 7</span>
+                                </div>
+                                <h6>Mombasa Outreach</h6>
+                                <p class="text-muted small">Information session in coastal region</p>
+                            </div>
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Oct 14-18</span>
+                                </div>
+                                <h6>Kisumu Workshop</h6>
+                                <p class="text-muted small">Western Kenya pilot</p>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Oct 28</span>
+                                </div>
+                                <h6>Halloween Crypto Party</h6>
+                                <p class="text-muted small">Networking event</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- November -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm schedule-card">
+                        <div class="card-header bg-purple text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">November</h5>
+                            <span class="badge bg-light text-purple">Community</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Nov 4</span>
+                                </div>
+                                <h6>Graduate Showcase</h6>
+                                <p class="text-muted small">Participants present projects</p>
+                            </div>
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Nov 11</span>
+                                </div>
+                                <h6>Career Fair</h6>
+                                <p class="text-muted small">Connect with employers</p>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Nov 25</span>
+                                </div>
+                                <h6>Thanksgiving Meetup</h6>
+                                <p class="text-muted small">Community appreciation event</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- December -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm schedule-card">
+                        <div class="card-header bg-purple text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">December</h5>
+                            <span class="badge bg-light text-purple">Celebration</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Dec 2</span>
+                                </div>
+                                <h6>Year-End Review</h6>
+                                <p class="text-muted small">Impact assessment</p>
+                            </div>
+                            <div class="schedule-item mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Dec 9</span>
+                                </div>
+                                <h6>Graduation Ceremony</h6>
+                                <p class="text-muted small">Certificate presentation</p>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-check text-success me-2"></i>
+                                    <span class="fw-bold">Dec 16</span>
+                                </div>
+                                <h6>Holiday Party</h6>
+                                <p class="text-muted small">End of year celebration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="card bg-light mb-5">
+        <div class="card-body">
+            <h5 class="mb-3"><i class="fas fa-info-circle me-2 text-primary"></i>Event Types</h5>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <span class="badge bg-primary p-2 me-2">Workshop</span>
+                    <small>In-person training sessions</small>
+                </div>
+                <div class="col-md-3">
+                    <span class="badge bg-success p-2 me-2">Webinar</span>
+                    <small>Online learning events</small>
+                </div>
+                <div class="col-md-3">
+                    <span class="badge bg-info p-2 me-2">Mentorship</span>
+                    <small>Guidance sessions</small>
+                </div>
+                <div class="col-md-3">
+                    <span class="badge bg-warning p-2 me-2">Networking</span>
+                    <small>Community building</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration CTA -->
+    <div class="card bg-primary text-white">
+        <div class="card-body text-center py-5">
+            <h3 class="mb-3">Ready to Join the Movement?</h3>
+            <p class="lead mb-4">Applications are now open for the 2024 pilot program</p>
+            <a href="{{ url_for('register') }}" class="btn btn-light btn-lg px-5">
+                <i class="fas fa-user-plus me-2"></i>Register Now
+            </a>
+            <p class="mt-3 small opacity-75">Limited seats available - 80-100 participants</p>
+        </div>
+    </div>
+</div>
+
+<!-- Filter JavaScript -->
+<script>
+function filterMonth(quarter) {
+    // Update active button
+    document.querySelectorAll('.btn-group .btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    // Show/hide quarters
+    if (quarter === 'all') {
+        document.querySelectorAll('.quarter-section').forEach(section => {
+            section.style.display = 'block';
+        });
+    } else {
+        document.querySelectorAll('.quarter-section').forEach(section => {
+            if (section.dataset.quarter === quarter) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+    }
+}
+
+// Highlight current month
+document.addEventListener('DOMContentLoaded', function() {
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    
+    // You could add logic to highlight current month's events
+});
+</script>
+
+<!-- Additional CSS -->
+<style>
+.schedule-card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.schedule-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.1) !important;
+}
+
+.highlight-card {
+    border: 2px solid var(--primary-color);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(111, 66, 193, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(111, 66, 193, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(111, 66, 193, 0);
+    }
+}
+
+.schedule-item {
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.schedule-item:hover {
+    background-color: #f8f9fa;
+}
+
+.schedule-item ul {
+    margin-top: 5px;
+    padding-left: 20px;
+    color: #6c757d;
+}
+
+.card-header {
+    border-bottom: none;
+}
+
+.bg-purple {
+    background-color: #6f42c1 !important;
+}
+
+.text-purple {
+    color: #6f42c1 !important;
+}
+
+.quarter-section {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn-group .btn {
+    border-radius: 0;
+    font-weight: 500;
+}
+
+.btn-group .btn:first-child {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.btn-group .btn:last-child {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.btn-group .btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .btn-group {
+        flex-wrap: wrap;
+    }
+    
+    .btn-group .btn {
+        border-radius: 30px !important;
+        margin: 5px;
+        flex: 1 1 auto;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .schedule-card:hover {
+        transform: translateY(-5px);
+    }
+}
+</style>
+
+{% endblock %}

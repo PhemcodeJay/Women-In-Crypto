@@ -1,0 +1,814 @@
+<!-- templates/admin.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Admin Login Section (shown when not logged in) -->
+            <div id="loginSection">
+                <div class="card shadow-lg border-0 rounded-lg overflow-hidden mb-4">
+                    <div class="card-header bg-dark text-white py-4">
+                        <div class="text-center">
+                            <i class="fas fa-shield-alt fa-3x mb-3"></i>
+                            <h2 class="fw-bold mb-2">Admin Access</h2>
+                            <p class="text-white-50 mb-0">Secure dashboard for program administrators</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body p-4 p-lg-5">
+                        <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">
+                                    <i class="fas fa-user me-2 text-dark"></i>Username
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="username" 
+                                           placeholder="Enter username"
+                                           value="admin"
+                                           required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">
+                                    <i class="fas fa-lock me-2 text-dark"></i>Password
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                    <input type="password" 
+                                           class="form-control" 
+                                           id="password" 
+                                           placeholder="Enter password"
+                                           value="admin123"
+                                           required>
+                                    <button class="btn btn-outline-secondary" 
+                                            type="button" 
+                                            onclick="togglePasswordVisibility('password', this)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-dark btn-lg">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Login to Dashboard
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div class="alert alert-info mt-4" role="alert">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Demo Credentials:</strong> Username: admin | Password: admin123
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Admin Dashboard (shown after login) -->
+            <div id="dashboardSection" style="display: none;">
+                <!-- Dashboard Header -->
+                <div class="card shadow-lg border-0 rounded-lg overflow-hidden mb-4">
+                    <div class="card-header bg-dark text-white py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-tachometer-alt me-2"></i>
+                                <span class="fw-bold">Admin Dashboard</span>
+                            </div>
+                            <div>
+                                <span class="badge bg-success me-2" id="onlineStatus">
+                                    <i class="fas fa-circle me-1"></i>Online
+                                </span>
+                                <button class="btn btn-sm btn-light" onclick="logoutAdmin()">
+                                    <i class="fas fa-sign-out-alt me-1"></i>Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted mb-1">Total Registrations</h6>
+                                        <h2 class="mb-0" id="totalRegistrations">0</h2>
+                                    </div>
+                                    <div class="bg-primary bg-opacity-10 p-3 rounded-circle">
+                                        <i class="fas fa-users text-primary fa-2x"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <span class="text-success" id="weeklyGrowth">+12%</span>
+                                    <span class="text-muted ms-1">from last week</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted mb-1">Pending Approval</h6>
+                                        <h2 class="mb-0" id="pendingApproval">0</h2>
+                                    </div>
+                                    <div class="bg-warning bg-opacity-10 p-3 rounded-circle">
+                                        <i class="fas fa-clock text-warning fa-2x"></i>
+                                    </div>
+                                </div>
+                                <a href="#" class="text-decoration-none" onclick="filterByStatus('pending')">
+                                    Review pending <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted mb-1">Approved</h6>
+                                        <h2 class="mb-0" id="approvedCount">0</h2>
+                                    </div>
+                                    <div class="bg-success bg-opacity-10 p-3 rounded-circle">
+                                        <i class="fas fa-check-circle text-success fa-2x"></i>
+                                    </div>
+                                </div>
+                                <a href="#" class="text-decoration-none" onclick="filterByStatus('approved')">
+                                    View approved <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted mb-1">Rejected</h6>
+                                        <h2 class="mb-0" id="rejectedCount">0</h2>
+                                    </div>
+                                    <div class="bg-danger bg-opacity-10 p-3 rounded-circle">
+                                        <i class="fas fa-times-circle text-danger fa-2x"></i>
+                                    </div>
+                                </div>
+                                <a href="#" class="text-decoration-none" onclick="filterByStatus('rejected')">
+                                    View rejected <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Filters and Search -->
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="searchInput" 
+                                           placeholder="Search by name, email, phone..."
+                                           onkeyup="filterRegistrations()">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select" id="categoryFilter" onchange="filterRegistrations()">
+                                    <option value="">All Categories</option>
+                                    <option value="student">Student</option>
+                                    <option value="professional">Professional</option>
+                                    <option value="entrepreneur">Entrepreneur</option>
+                                    <option value="freelancer">Freelancer</option>
+                                    <option value="unemployed">Unemployed / Job Seeker</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select" id="statusFilter" onchange="filterRegistrations()">
+                                    <option value="">All Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-outline-secondary w-100" onclick="resetFilters()">
+                                    <i class="fas fa-undo me-1"></i>Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Registrations Table -->
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-light py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="fas fa-list me-2"></i>Registration Requests
+                            </h5>
+                            <div>
+                                <button class="btn btn-sm btn-success me-2" onclick="exportToCSV()">
+                                    <i class="fas fa-download me-1"></i>Export CSV
+                                </button>
+                                <button class="btn btn-sm btn-primary" onclick="refreshData()">
+                                    <i class="fas fa-sync-alt me-1"></i>Refresh
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th class="ps-4">#</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Category</th>
+                                        <th>Experience</th>
+                                        <th>ID Type</th>
+                                        <th>Status</th>
+                                        <th>Registered</th>
+                                        <th class="text-end pe-4">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="registrationsTableBody">
+                                    <!-- Sample Data Row -->
+                                    <tr>
+                                        <td class="ps-4">1</td>
+                                        <td>
+                                            <div class="fw-bold">Jane Wanjiku</div>
+                                            <small class="text-muted">Age: 24</small>
+                                        </td>
+                                        <td>jane.w@example.com</td>
+                                        <td>+254 712 345 678</td>
+                                        <td><span class="badge bg-info">Student</span></td>
+                                        <td>Beginner</td>
+                                        <td>National ID</td>
+                                        <td>
+                                            <span class="badge bg-warning">Pending</span>
+                                        </td>
+                                        <td>2024-03-15</td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-sm btn-success me-1" onclick="updateStatus(this, 'approved')" title="Approve">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger me-1" onclick="updateStatus(this, 'rejected')" title="Reject">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-info" onclick="viewDetails(this)" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">2</td>
+                                        <td>
+                                            <div class="fw-bold">Mary Akinyi</div>
+                                            <small class="text-muted">Age: 28</small>
+                                        </td>
+                                        <td>mary.a@example.com</td>
+                                        <td>+254 723 456 789</td>
+                                        <td><span class="badge bg-primary">Professional</span></td>
+                                        <td>Intermediate</td>
+                                        <td>Passport</td>
+                                        <td>
+                                            <span class="badge bg-success">Approved</span>
+                                        </td>
+                                        <td>2024-03-14</td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-sm btn-success me-1" onclick="updateStatus(this, 'approved')" title="Approve" disabled>
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger me-1" onclick="updateStatus(this, 'rejected')" title="Reject">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-info" onclick="viewDetails(this)" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">3</td>
+                                        <td>
+                                            <div class="fw-bold">Susan Mwende</div>
+                                            <small class="text-muted">Age: 31</small>
+                                        </td>
+                                        <td>susan.m@example.com</td>
+                                        <td>+254 734 567 890</td>
+                                        <td><span class="badge bg-success">Entrepreneur</span></td>
+                                        <td>Advanced</td>
+                                        <td>Driver's License</td>
+                                        <td>
+                                            <span class="badge bg-danger">Rejected</span>
+                                        </td>
+                                        <td>2024-03-13</td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-sm btn-success me-1" onclick="updateStatus(this, 'approved')" title="Approve">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger me-1" onclick="updateStatus(this, 'rejected')" title="Reject" disabled>
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-info" onclick="viewDetails(this)" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="text-muted" id="showingEntries">Showing 1 to 3 of 3 entries</span>
+                            </div>
+                            <div>
+                                <nav aria-label="Table navigation">
+                                    <ul class="pagination pagination-sm mb-0">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#">Previous</a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Details Modal -->
+<div class="modal fade" id="viewDetailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-user-circle me-2"></i>Applicant Details
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="fw-bold text-primary">Personal Information</h6>
+                        <table class="table table-sm">
+                            <tr>
+                                <th>Full Name:</th>
+                                <td id="detailName"></td>
+                            </tr>
+                            <tr>
+                                <th>Email:</th>
+                                <td id="detailEmail"></td>
+                            </tr>
+                            <tr>
+                                <th>Phone:</th>
+                                <td id="detailPhone"></td>
+                            </tr>
+                            <tr>
+                                <th>Age:</th>
+                                <td id="detailAge"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="fw-bold text-primary">Workshop Details</h6>
+                        <table class="table table-sm">
+                            <tr>
+                                <th>Category:</th>
+                                <td id="detailCategory"></td>
+                            </tr>
+                            <tr>
+                                <th>Experience:</th>
+                                <td id="detailExperience"></td>
+                            </tr>
+                            <tr>
+                                <th>Reason:</th>
+                                <td id="detailReason"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <h6 class="fw-bold text-primary mt-3">ID Verification</h6>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>ID Type:</strong> <span id="detailIdType"></span></p>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-sm btn-primary" onclick="viewIDDocument()">
+                            <i class="fas fa-file-pdf me-1"></i>View ID Document
+                        </button>
+                    </div>
+                </div>
+                
+                <h6 class="fw-bold text-primary mt-3">Timeline</h6>
+                <div class="timeline">
+                    <div class="d-flex mb-2">
+                        <div class="text-muted me-3">2024-03-15 10:30</div>
+                        <div>Registered</div>
+                    </div>
+                    <div class="d-flex mb-2">
+                        <div class="text-muted me-3">2024-03-15 14:20</div>
+                        <div>Document uploaded and verified</div>
+                    </div>
+                    <div class="d-flex" id="statusTimeline"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" onclick="approveFromModal()">
+                    <i class="fas fa-check me-1"></i>Approve
+                </button>
+                <button type="button" class="btn btn-danger" onclick="rejectFromModal()">
+                    <i class="fas fa-times me-1"></i>Reject
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Admin JavaScript -->
+<script>
+let isAdminLoggedIn = false;
+let currentUser = null;
+let registrationsData = [];
+
+// Admin login handler
+function handleAdminLogin(event) {
+    event.preventDefault();
+    
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    // Hardcoded admin credentials as specified
+    if (username === 'admin' && password === 'admin123') {
+        isAdminLoggedIn = true;
+        currentUser = { username: 'admin', role: 'administrator' };
+        
+        // Show dashboard, hide login
+        document.getElementById('loginSection').style.display = 'none';
+        document.getElementById('dashboardSection').style.display = 'block';
+        
+        // Load dashboard data
+        loadDashboardData();
+        loadRegistrations();
+        
+        // Show success message
+        showNotification('Login successful! Welcome to Admin Dashboard.', 'success');
+    } else {
+        showNotification('Invalid username or password. Please try again.', 'danger');
+    }
+}
+
+// Logout function
+function logoutAdmin() {
+    isAdminLoggedIn = false;
+    currentUser = null;
+    document.getElementById('loginSection').style.display = 'block';
+    document.getElementById('dashboardSection').style.display = 'none';
+    showNotification('Logged out successfully.', 'info');
+}
+
+// Load dashboard statistics
+function loadDashboardData() {
+    // Simulate loading data from server
+    setTimeout(() => {
+        document.getElementById('totalRegistrations').textContent = '156';
+        document.getElementById('pendingApproval').textContent = '23';
+        document.getElementById('approvedCount').textContent = '118';
+        document.getElementById('rejectedCount').textContent = '15';
+        document.getElementById('weeklyGrowth').innerHTML = '+12%';
+    }, 500);
+}
+
+// Load registrations table
+function loadRegistrations() {
+    // Simulated data - in production, this would come from backend
+    registrationsData = [
+        {
+            id: 1,
+            name: 'Jane Wanjiku',
+            age: 24,
+            email: 'jane.w@example.com',
+            phone: '+254 712 345 678',
+            category: 'student',
+            experience: 'beginner',
+            id_type: 'national',
+            status: 'pending',
+            registered_date: '2024-03-15',
+            reason: 'Interested in learning blockchain for my computer science degree'
+        },
+        {
+            id: 2,
+            name: 'Mary Akinyi',
+            age: 28,
+            email: 'mary.a@example.com',
+            phone: '+254 723 456 789',
+            category: 'professional',
+            experience: 'intermediate',
+            id_type: 'passport',
+            status: 'approved',
+            registered_date: '2024-03-14',
+            reason: 'Looking to transition into blockchain development'
+        },
+        {
+            id: 3,
+            name: 'Susan Mwende',
+            age: 31,
+            email: 'susan.m@example.com',
+            phone: '+254 734 567 890',
+            category: 'entrepreneur',
+            experience: 'advanced',
+            id_type: 'driver',
+            status: 'rejected',
+            registered_date: '2024-03-13',
+            reason: 'Want to integrate blockchain in my business'
+        }
+    ];
+    
+    renderRegistrationsTable(registrationsData);
+}
+
+// Render registrations table
+function renderRegistrationsTable(data) {
+    const tbody = document.getElementById('registrationsTableBody');
+    tbody.innerHTML = '';
+    
+    data.forEach((reg, index) => {
+        const row = document.createElement('tr');
+        
+        // Status badge class
+        let statusClass = 'bg-warning';
+        if (reg.status === 'approved') statusClass = 'bg-success';
+        if (reg.status === 'rejected') statusClass = 'bg-danger';
+        
+        // Category badge class
+        let categoryClass = 'bg-info';
+        if (reg.category === 'professional') categoryClass = 'bg-primary';
+        if (reg.category === 'entrepreneur') categoryClass = 'bg-success';
+        if (reg.category === 'freelancer') categoryClass = 'bg-secondary';
+        
+        // ID type display
+        let idTypeDisplay = 'National ID';
+        if (reg.id_type === 'passport') idTypeDisplay = 'Passport';
+        if (reg.id_type === 'driver') idTypeDisplay = 'Driver\'s License';
+        
+        row.innerHTML = `
+            <td class="ps-4">${index + 1}</td>
+            <td>
+                <div class="fw-bold">${reg.name}</div>
+                <small class="text-muted">Age: ${reg.age}</small>
+            </td>
+            <td>${reg.email}</td>
+            <td>${reg.phone}</td>
+            <td><span class="badge ${categoryClass}">${reg.category.charAt(0).toUpperCase() + reg.category.slice(1)}</span></td>
+            <td>${reg.experience.charAt(0).toUpperCase() + reg.experience.slice(1)}</td>
+            <td>${idTypeDisplay}</td>
+            <td>
+                <span class="badge ${statusClass}">${reg.status.charAt(0).toUpperCase() + reg.status.slice(1)}</span>
+            </td>
+            <td>${reg.registered_date}</td>
+            <td class="text-end pe-4">
+                <button class="btn btn-sm btn-success me-1" onclick="updateStatus(this, 'approved', ${reg.id})" title="Approve" ${reg.status !== 'pending' ? 'disabled' : ''}>
+                    <i class="fas fa-check"></i>
+                </button>
+                <button class="btn btn-sm btn-danger me-1" onclick="updateStatus(this, 'rejected', ${reg.id})" title="Reject" ${reg.status !== 'pending' ? 'disabled' : ''}>
+                    <i class="fas fa-times"></i>
+                </button>
+                <button class="btn btn-sm btn-info" onclick="viewDetails(${reg.id})" title="View Details">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </td>
+        `;
+        
+        tbody.appendChild(row);
+    });
+    
+    document.getElementById('showingEntries').textContent = 
+        `Showing 1 to ${data.length} of ${data.length} entries`;
+}
+
+// Filter registrations
+function filterRegistrations() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const categoryFilter = document.getElementById('categoryFilter').value;
+    const statusFilter = document.getElementById('statusFilter').value;
+    
+    const filtered = registrationsData.filter(reg => {
+        const matchesSearch = reg.name.toLowerCase().includes(searchTerm) ||
+                             reg.email.toLowerCase().includes(searchTerm) ||
+                             reg.phone.includes(searchTerm);
+        const matchesCategory = !categoryFilter || reg.category === categoryFilter;
+        const matchesStatus = !statusFilter || reg.status === statusFilter;
+        
+        return matchesSearch && matchesCategory && matchesStatus;
+    });
+    
+    renderRegistrationsTable(filtered);
+}
+
+// Reset filters
+function resetFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('categoryFilter').value = '';
+    document.getElementById('statusFilter').value = '';
+    renderRegistrationsTable(registrationsData);
+}
+
+// Update status
+function updateStatus(button, status, id) {
+    const registration = registrationsData.find(r => r.id === id);
+    if (registration) {
+        registration.status = status;
+        filterRegistrations();
+        loadDashboardData();
+        showNotification(`Registration #${id} ${status} successfully!`, 'success');
+    }
+}
+
+// View details
+function viewDetails(id) {
+    const registration = registrationsData.find(r => r.id === id);
+    if (registration) {
+        document.getElementById('detailName').textContent = registration.name;
+        document.getElementById('detailEmail').textContent = registration.email;
+        document.getElementById('detailPhone').textContent = registration.phone;
+        document.getElementById('detailAge').textContent = registration.age;
+        
+        let categoryDisplay = registration.category.charAt(0).toUpperCase() + registration.category.slice(1);
+        document.getElementById('detailCategory').textContent = categoryDisplay;
+        
+        let experienceDisplay = registration.experience.charAt(0).toUpperCase() + registration.experience.slice(1);
+        document.getElementById('detailExperience').textContent = experienceDisplay;
+        
+        document.getElementById('detailReason').textContent = registration.reason;
+        
+        let idTypeDisplay = 'National ID';
+        if (registration.id_type === 'passport') idTypeDisplay = 'Passport';
+        if (registration.id_type === 'driver') idTypeDisplay = 'Driver\'s License';
+        document.getElementById('detailIdType').textContent = idTypeDisplay;
+        
+        document.getElementById('statusTimeline').innerHTML = `
+            <div class="text-muted me-3">${new Date().toLocaleDateString()}</div>
+            <div class="fw-bold text-${registration.status === 'approved' ? 'success' : (registration.status === 'rejected' ? 'danger' : 'warning')}">
+                Status: ${registration.status.charAt(0).toUpperCase() + registration.status.slice(1)}
+            </div>
+        `;
+        
+        new bootstrap.Modal(document.getElementById('viewDetailsModal')).show();
+    }
+}
+
+// Export to CSV
+function exportToCSV() {
+    let csv = 'Name,Email,Phone,Category,Experience,Status,Registered Date\n';
+    
+    registrationsData.forEach(reg => {
+        csv += `"${reg.name}",${reg.email},${reg.phone},${reg.category},${reg.experience},${reg.status},${reg.registered_date}\n`;
+    });
+    
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'registrations.csv';
+    a.click();
+    
+    showNotification('Data exported successfully!', 'success');
+}
+
+// Refresh data
+function refreshData() {
+    loadDashboardData();
+    loadRegistrations();
+    showNotification('Data refreshed!', 'info');
+}
+
+// Filter by status
+function filterByStatus(status) {
+    document.getElementById('statusFilter').value = status;
+    filterRegistrations();
+}
+
+// Show notification
+function showNotification(message, type) {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 end-0 m-3`;
+    alertDiv.style.zIndex = '9999';
+    alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    document.body.appendChild(alertDiv);
+    
+    setTimeout(() => {
+        alertDiv.remove();
+    }, 3000);
+}
+
+// Toggle password visibility
+function togglePasswordVisibility(inputId, button) {
+    const input = document.getElementById(inputId);
+    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+    input.setAttribute('type', type);
+    button.querySelector('i').classList.toggle('fa-eye');
+    button.querySelector('i').classList.toggle('fa-eye-slash');
+}
+
+// Auto-fill demo credentials on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if already logged in (session management would be handled by backend)
+});
+</script>
+
+<!-- Additional CSS -->
+<style>
+.timeline {
+    border-left: 3px solid #dee2e6;
+    padding-left: 20px;
+    margin-left: 10px;
+}
+
+.timeline .d-flex {
+    position: relative;
+}
+
+.timeline .d-flex::before {
+    content: '';
+    position: absolute;
+    left: -26px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #0d6efd;
+    border: 2px solid white;
+}
+
+.table th {
+    width: 120px;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.75em;
+}
+
+/* Hover effects */
+.table tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.05);
+    cursor: pointer;
+}
+
+/* Stats cards hover */
+.card.h-100:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15) !important;
+    transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .table {
+        font-size: 0.9rem;
+    }
+    
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+    }
+}
+</style>
+
+{% endblock %}

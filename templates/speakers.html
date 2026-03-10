@@ -1,0 +1,504 @@
+<!-- templates/speakers.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-primary mb-3">
+            <i class="fas fa-users me-3"></i>Meet Our Speakers
+        </h1>
+        <p class="lead text-muted">
+            Industry experts leading the Women in Crypto Initiative
+        </p>
+        <div class="mt-3">
+            <span class="badge bg-primary p-3 fs-6">
+                <i class="fas fa-star me-2"></i>3 Expert Speakers | 10+ Years Combined Experience
+            </span>
+        </div>
+    </div>
+
+    <!-- Speakers Grid -->
+    <div class="row g-4 mb-5">
+        <!-- Speaker 1: Cryptocurrency Expert -->
+        <div class="col-lg-4">
+            <div class="card h-100 border-0 shadow-lg speaker-card">
+                <div class="position-relative">
+                    <img src="https://avatars.githubusercontent.com/u/122783991?v=4" 
+                         class="card-img-top" 
+                         alt="Jegede Oluwafemi"
+                         style="height: 350px; object-fit: cover;">
+                    <div class="position-absolute bottom-0 start-0 w-100 p-3" 
+                         style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                        <span class="badge bg-warning text-dark mb-2">Cryptocurrency Expert</span>
+                        <h3 class="text-white mb-0">Jegede Oluwafemi</h3>
+                        <p class="text-white-50 mb-0">Blockchain Expert</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Expertise Tags -->
+                    <div class="mb-3">
+                        <span class="badge bg-primary me-1">Bitcoin</span>
+                        <span class="badge bg-primary me-1">Altcoins</span>
+                        <span class="badge bg-primary me-1">Market Analysis</span>
+                        <span class="badge bg-primary">Trading</span>
+                    </div>
+                    
+                    <!-- Bio -->
+                    <p class="text-muted mb-3">
+                        Oluwafemi is a leading cryptocurrency expert with over 8 years of experience in blockchain technology. 
+                        he holds a degree in Blockchain Technology from the University of Lagos and has advised several 
+                        fintech startups across East Africa.
+                    </p>
+                    
+                    <!-- Key Topics -->
+                    <h6 class="fw-bold mb-2"><i class="fas fa-graduation-cap text-primary me-2"></i>Key Topics:</h6>
+                    <ul class="list-unstyled mb-3">
+                        <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i>Introduction to Bitcoin & Cryptocurrencies</li>
+                        <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i>Understanding Market Cycles</li>
+                        <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i>Crypto Investment Strategies</li>
+                        <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i>Risk Management in Crypto Trading</li>
+                    </ul>
+                    
+                    <!-- Social Links -->
+                    <div class="d-flex justify-content-start gap-2">
+                        <a href="https://www.linkedin.com/in/phemcode/" class="btn btn-outline-primary btn-sm">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://x.com/PhemcodeJ3161" class="btn btn-outline-primary btn-sm">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://cybertrendhub.onrender.com" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-footer bg-light">
+                    <small class="text-muted">
+                        <i class="fas fa-calendar me-1"></i> Speaking: Day 1 - Demystifying Blockchain
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Speaker 2: DeFi Specialist -->
+        <div class="col-lg-4">
+            <div class="card h-100 border-0 shadow-lg speaker-card">
+                <div class="position-relative">
+                    <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
+                         class="card-img-top" 
+                         alt="Sarah Akinyi"
+                         style="height: 350px; object-fit: cover;">
+                    <div class="position-absolute bottom-0 start-0 w-100 p-3" 
+                         style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                        <span class="badge bg-info text-white mb-2">DeFi Specialist</span>
+                        <h3 class="text-white mb-0">Sarah Akinyi</h3>
+                        <p class="text-white-50 mb-0">DeFi Protocol Analyst</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Expertise Tags -->
+                    <div class="mb-3">
+                        <span class="badge bg-info me-1">DeFi</span>
+                        <span class="badge bg-info me-1">Lending/Borrowing</span>
+                        <span class="badge bg-info me-1">Yield Farming</span>
+                        <span class="badge bg-info">DAOs</span>
+                    </div>
+                    
+                    <!-- Bio -->
+                    <p class="text-muted mb-3">
+                        Sarah is a DeFi protocol analyst with 5 years of experience in decentralized finance. 
+                        She has worked with major DeFi protocols and is passionate about making DeFi accessible 
+                        to African women. She regularly consults for blockchain projects across the continent.
+                    </p>
+                    
+                    <!-- Key Topics -->
+                    <h6 class="fw-bold mb-2"><i class="fas fa-graduation-cap text-info me-2"></i>Key Topics:</h6>
+                    <ul class="list-unstyled mb-3">
+                        <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i>What is DeFi? A Beginner's Guide</li>
+                        <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i>Lending, Borrowing & Staking</li>
+                        <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i>Yield Farming Strategies</li>
+                        <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i>DAO Governance & Participation</li>
+                    </ul>
+                    
+                    <!-- Social Links -->
+                    <div class="d-flex justify-content-start gap-2">
+                        <a href="#" class="btn btn-outline-info btn-sm">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-info btn-sm">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-info btn-sm">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-footer bg-light">
+                    <small class="text-muted">
+                        <i class="fas fa-calendar me-1"></i> Speaking: Day 2 - DeFi & Yield Opportunities
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Speaker 3: Financial Literacy Expert -->
+        <div class="col-lg-4">
+            <div class="card h-100 border-0 shadow-lg speaker-card">
+                <div class="position-relative">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
+                         class="card-img-top" 
+                         alt="Grace Muthoni"
+                         style="height: 350px; object-fit: cover;">
+                    <div class="position-absolute bottom-0 start-0 w-100 p-3" 
+                         style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                        <span class="badge bg-success text-white mb-2">Financial Literacy Expert</span>
+                        <h3 class="text-white mb-0">Grace Muthoni</h3>
+                        <p class="text-white-50 mb-0">Certified Financial Educator</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Expertise Tags -->
+                    <div class="mb-3">
+                        <span class="badge bg-success me-1">Personal Finance</span>
+                        <span class="badge bg-success me-1">Budgeting</span>
+                        <span class="badge bg-success me-1">Investment</span>
+                        <span class="badge bg-success">Financial Planning</span>
+                    </div>
+                    
+                    <!-- Bio -->
+                    <p class="text-muted mb-3">
+                        Grace is a certified financial educator with over 10 years of experience helping women 
+                        achieve financial independence. She founded "Money Smart Kenya" and has trained over 
+                        5,000 women in personal finance and investment strategies across East Africa.
+                    </p>
+                    
+                    <!-- Key Topics -->
+                    <h6 class="fw-bold mb-2"><i class="fas fa-graduation-cap text-success me-2"></i>Key Topics:</h6>
+                    <ul class="list-unstyled mb-3">
+                        <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i>Personal Finance Basics</li>
+                        <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i>Budgeting & Saving Strategies</li>
+                        <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i>Introduction to Investing</li>
+                        <li class="mb-1"><i class="fas fa-check-circle text-success me-2"></i>Financial Independence for Women</li>
+                    </ul>
+                    
+                    <!-- Social Links -->
+                    <div class="d-flex justify-content-start gap-2">
+                        <a href="#" class="btn btn-outline-success btn-sm">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-success btn-sm">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-success btn-sm">
+                            <i class="fas fa-chart-line"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-footer bg-light">
+                    <small class="text-muted">
+                        <i class="fas fa-calendar me-1"></i> Speaking: Day 3 - Financial Literacy & Planning
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Speaker Schedule Table -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center text-primary mb-4">
+                <i class="fas fa-clock me-2"></i>Speaker Schedule
+            </h2>
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Day 1 - Cryptocurrency</th>
+                                    <th>Day 2 - DeFi</th>
+                                    <th>Day 3 - Financial Literacy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold">9:00 - 10:30</td>
+                                    <td>
+                                        <strong>Jegede Oluwafemi</strong>
+                                        <br><small class="text-muted">Bitcoin Fundamentals</small>
+                                    </td>
+                                    <td>
+                                        <strong>Sarah Akinyi</strong>
+                                        <br><small class="text-muted">DeFi Introduction</small>
+                                    </td>
+                                    <td>
+                                        <strong>Grace Muthoni</strong>
+                                        <br><small class="text-muted">Financial Basics</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">11:00 - 12:30</td>
+                                    <td>
+                                        <strong>Jegede Oluwafemi</strong>
+                                        <br><small class="text-muted">Altcoins & Market Analysis</small>
+                                    </td>
+                                    <td>
+                                        <strong>Sarah Akinyi</strong>
+                                        <br><small class="text-muted">Lending & Borrowing Protocols</small>
+                                    </td>
+                                    <td>
+                                        <strong>Grace Muthoni</strong>
+                                        <br><small class="text-muted">Budgeting & Saving</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">1:30 - 3:00</td>
+                                    <td>
+                                        <strong>Jegede Oluwafemi</strong>
+                                        <br><small class="text-muted">Crypto Security & Wallets</small>
+                                    </td>
+                                    <td>
+                                        <strong>Sarah Akinyi</strong>
+                                        <br><small class="text-muted">Yield Farming & Staking</small>
+                                    </td>
+                                    <td>
+                                        <strong>Grace Muthoni</strong>
+                                        <br><small class="text-muted">Investment Strategies</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">3:30 - 5:00</td>
+                                    <td>
+                                        <strong>Panel Discussion</strong>
+                                        <br><small class="text-muted">All Speakers + Q&A</small>
+                                    </td>
+                                    <td>
+                                        <strong>Hands-on Workshop</strong>
+                                        <br><small class="text-muted">DeFi Protocol Demo</small>
+                                    </td>
+                                    <td>
+                                        <strong>Financial Planning</strong>
+                                        <br><small class="text-muted">Personal Action Plans</small>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Combined Expertise Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card bg-primary text-white">
+                <div class="card-body p-5">
+                    <h3 class="text-center mb-4">Combined Expertise</h3>
+                    <div class="row g-4">
+                        <div class="col-md-4 text-center">
+                            <div class="bg-white bg-opacity-25 rounded-circle p-4 d-inline-block mb-3">
+                                <i class="fas fa-coins fa-3x"></i>
+                            </div>
+                            <h5>Cryptocurrency</h5>
+                            <p class="small opacity-75">Bitcoin, Altcoins, Trading, Market Analysis</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="bg-white bg-opacity-25 rounded-circle p-4 d-inline-block mb-3">
+                                <i class="fas fa-chart-line fa-3x"></i>
+                            </div>
+                            <h5>DeFi</h5>
+                            <p class="small opacity-75">Lending, Borrowing, Yield Farming, DAOs</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="bg-white bg-opacity-25 rounded-circle p-4 d-inline-block mb-3">
+                                <i class="fas fa-piggy-bank fa-3x"></i>
+                            </div>
+                            <h5>Financial Literacy</h5>
+                            <p class="small opacity-75">Budgeting, Saving, Investing, Planning</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Speaker Highlights -->
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-medal text-warning fa-3x mb-3"></i>
+                    <h5>Jegede Oluwafemi</h5>
+                    <p class="text-muted">Cryptocurrency Expert</p>
+                    <hr>
+                    <div class="text-start">
+                        <p><i class="fas fa-check-circle text-success me-2"></i> PhD in Blockchain Economics</p>
+                        <p><i class="fas fa-check-circle text-success me-2"></i> 8+ years crypto experience</p>
+                        <p><i class="fas fa-check-circle text-success me-2"></i> Advisor to 5+ fintech startups</p>
+                        <p><i class="fas fa-check-circle text-success me-2"></i> Published author on crypto</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-medal text-warning fa-3x mb-3"></i>
+                    <h5>Sarah Akinyi</h5>
+                    <p class="text-muted">DeFi Specialist</p>
+                    <hr>
+                    <div class="text-start">
+                        <p><i class="fas fa-check-circle text-success me-2"></i> 5 years DeFi protocol experience</p>
+                        <p><i class="fas fa-check-circle text-success me-2"></i> Managed $10M+ in DeFi assets</p>
+                        <p><i class="fas fa-check-circle text-success me-2"></i> DAO governance expert</p>
+                        <p><i class="fas fa-check-circle text-success me-2"></i> Regular conference speaker</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-medal text-warning fa-3x mb-3"></i>
+                    <h5>Grace Muthoni</h5>
+                    <p class="text-muted">Financial Literacy Expert</p>
+                    <hr>
+                    <div class="text-start">
+                        <p><i class="fas fa-check-circle text-success me-2"></i> Certified Financial Educator</p>
+                        <p><i class="fas fa-check-circle text-success me-2"></i> 10+ years training experience</p>
+                        <p><i class="fas fa-check-circle text-success me-2"></i> 5,000+ women trained</p>
+                        <p><i class="fas fa-check-circle text-success me-2"></i> Author of "Money Smart"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-5">
+        <div class="card bg-light border-0">
+            <div class="card-body p-5">
+                <h3 class="mb-3">Don't Miss This Opportunity!</h3>
+                <p class="lead text-muted mb-4">Learn from the best in cryptocurrency, DeFi, and financial literacy</p>
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-5">
+                    <i class="fas fa-user-plus me-2"></i>Register for Workshop
+                </a>
+                <p class="mt-3 small text-muted">Limited seats available - 80-100 participants</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional CSS -->
+<style>
+.speaker-card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.speaker-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(111, 66, 193, 0.2) !important;
+}
+
+.speaker-card img {
+    transition: transform 0.5s ease;
+}
+
+.speaker-card:hover img {
+    transform: scale(1.05);
+}
+
+.speaker-card .position-absolute {
+    transition: all 0.3s ease;
+}
+
+.speaker-card:hover .position-absolute {
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent) !important;
+}
+
+.badge {
+    padding: 8px 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.speaker-card:hover .badge {
+    transform: scale(1.05);
+}
+
+.table thead th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    border: none;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.table td {
+    padding: 1rem;
+}
+
+.bg-white.bg-opacity-25 {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.bg-white.bg-opacity-25:hover {
+    transform: scale(1.1);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.speaker-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.speaker-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.speaker-card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .speaker-card:hover {
+        transform: translateY(-10px);
+    }
+    
+    .table {
+        font-size: 0.9rem;
+    }
+    
+    .table td {
+        padding: 0.75rem;
+    }
+}
+</style>
+
+{% endblock %}

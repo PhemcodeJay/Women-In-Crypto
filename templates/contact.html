@@ -1,0 +1,289 @@
+<!-- templates/contact.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-primary mb-3">
+            <i class="fas fa-envelope me-3"></i>Contact Us
+        </h1>
+        <p class="lead text-muted">
+            Get in touch with our team. We're here to help!
+        </p>
+    </div>
+
+    <div class="row g-5">
+        <!-- Contact Form -->
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white py-3">
+                    <h4 class="mb-0"><i class="fas fa-paper-plane me-2"></i>Send us a Message</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form id="contactForm" action="{{ url_for('contact') }}" method="POST">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Full Name <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-user text-primary"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Email <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-envelope text-primary"></i>
+                                    </span>
+                                    <input type="email" class="form-control" name="email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label class="form-label fw-bold">Subject <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-tag text-primary"></i>
+                                    </span>
+                                    <select class="form-select" name="subject" required>
+                                        <option value="">Select a subject</option>
+                                        <option value="registration">Registration Help</option>
+                                        <option value="technical">Technical Support</option>
+                                        <option value="partnership">Partnership Inquiry</option>
+                                        <option value="donation">Donation Questions</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label class="form-label fw-bold">Message <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-comment text-primary"></i>
+                                    </span>
+                                    <textarea class="form-control" name="message" rows="5" required></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg w-100">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="col-lg-5">
+            <!-- Quick Contact Cards -->
+            <div class="card shadow-lg border-0 mb-4">
+                <div class="card-header bg-success text-white py-3">
+                    <h4 class="mb-0"><i class="fas fa-info-circle me-2"></i>Quick Contact</h4>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-4 p-3 bg-light rounded-3">
+                        <div class="bg-primary text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-map-marker-alt fa-2x"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Visit Us</h6>
+                            <p class="mb-0">Nairobi, Kenya<br>Kajiado County</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-4 p-3 bg-light rounded-3">
+                        <div class="bg-success text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-phone-alt fa-2x"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Call Us</h6>
+                            <p class="mb-0">+254 101 674 289<br>+254 101 674 289</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-4 p-3 bg-light rounded-3">
+                        <div class="bg-info text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-envelope fa-2x"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Email Us</h6>
+                            <p class="mb-0">olphemie@gmail.com<br>olphemie@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center p-3 bg-light rounded-3">
+                        <div class="bg-warning text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-clock fa-2x"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Office Hours</h6>
+                            <p class="mb-0">Mon-Fri: 9:00 AM - 5:00 PM<br>Sat: 10:00 AM - 2:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Card -->
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-info text-white py-3">
+                    <h4 class="mb-0"><i class="fas fa-hashtag me-2"></i>Follow Us</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted mb-3">Stay connected on social media for updates and news</p>
+                    <div class="d-flex justify-content-around">
+                        <a href="https://x.com/PhemcodeJ3161" class="text-primary social-icon">
+                            <i class="fab fa-twitter fa-3x"></i>
+                            <small>Twitter</small>
+                        </a>
+                        <a href="https://www.linkedin.com/in/phemcode/" class="text-primary social-icon">
+                            <i class="fab fa-linkedin fa-3x"></i>
+                            <small>LinkedIn</small>
+                        </a>
+                        <a href="https://facebook.com/cryptomillionaires147" class="text-primary social-icon">
+                            <i class="fab fa-facebook fa-3x"></i>
+                            <small>Facebook</small>
+                        </a>
+                        <a href="" class="text-primary social-icon">
+                            <i class="fab fa-instagram fa-3x"></i>
+                            <small>Instagram</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-0">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255282.35855478276!2d36.68257999302396!3d-1.3020341977103594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1172d84d49a7%3A0xf7cf0254b297924c!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2sus!4v1621234567890!5m2!1sen!2sus" 
+                            width="100%" 
+                            height="400" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy"
+                            class="rounded-3"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Link -->
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <p class="text-muted">
+                <i class="fas fa-question-circle me-2"></i>
+                For quick answers, check our 
+                <a href="{{ url_for('faq') }}" class="text-primary">Frequently Asked Questions</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Form Handling -->
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+    submitBtn.disabled = true;
+    
+    // Simulate form submission (replace with actual AJAX call)
+    setTimeout(() => {
+        // Show success message
+        const alert = document.createElement('div');
+        alert.className = 'alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-3';
+        alert.style.zIndex = '9999';
+        alert.innerHTML = `
+            <i class="fas fa-check-circle me-2"></i>
+            Message sent successfully! We'll respond within 24 hours.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        document.body.appendChild(alert);
+        
+        // Reset form
+        this.reset();
+        
+        // Restore button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        // Remove alert after 5 seconds
+        setTimeout(() => alert.remove(), 5000);
+    }, 1500);
+});
+</script>
+
+<!-- Additional CSS -->
+<style>
+.social-icon {
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px);
+}
+
+.social-icon small {
+    display: block;
+    font-size: 0.75rem;
+    color: #6c757d;
+}
+
+.social-icon:hover i {
+    color: var(--primary-color) !important;
+}
+
+.bg-primary .rounded-circle {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1) !important;
+}
+
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .social-icon i {
+        font-size: 2rem !important;
+    }
+    
+    .bg-primary .rounded-circle {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .bg-primary .rounded-circle i {
+        font-size: 1.5rem !important;
+    }
+}
+</style>
+
+{% endblock %}

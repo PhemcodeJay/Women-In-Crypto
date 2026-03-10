@@ -1,0 +1,763 @@
+<!-- templates/participant.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Participant Dashboard Header -->
+            <div class="card shadow-lg border-0 rounded-lg overflow-hidden mb-4">
+                <div class="card-header bg-success text-white py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-user-circle fa-2x me-2"></i>
+                            <span class="fw-bold">My Participant Dashboard</span>
+                        </div>
+                        <div>
+                            <span class="badge bg-light text-dark me-2" id="participantStatus">
+                                <i class="fas fa-circle text-success me-1"></i>Active
+                            </span>
+                            <a href="{{ url_for('logout') }}" class="btn btn-sm btn-light">
+                                <i class="fas fa-sign-out-alt me-1"></i>Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Welcome Banner -->
+            <div class="card bg-success bg-opacity-10 border-0 mb-4">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-hand-peace fa-3x text-success"></i>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h4 class="mb-1">Welcome back, Jane! 👋</h4>
+                            <p class="text-muted mb-0">Your journey in blockchain technology continues. Check out your workshop progress below.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Participant Stats -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="text-muted mb-1">Workshop Progress</h6>
+                                    <h2 class="mb-0">75%</h2>
+                                </div>
+                                <div class="bg-success bg-opacity-10 p-3 rounded-circle">
+                                    <i class="fas fa-chart-line text-success fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="progress mt-3" style="height: 5px;">
+                                <div class="progress-bar bg-success" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="text-muted mb-1">Modules Completed</h6>
+                                    <h2 class="mb-0">6/8</h2>
+                                </div>
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-circle">
+                                    <i class="fas fa-check-circle text-primary fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="text-muted mb-1">Certificates</h6>
+                                    <h2 class="mb-0">2</h2>
+                                </div>
+                                <div class="bg-warning bg-opacity-10 p-3 rounded-circle">
+                                    <i class="fas fa-certificate text-warning fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="text-muted mb-1">Network</h6>
+                                    <h2 class="mb-0">45</h2>
+                                </div>
+                                <div class="bg-info bg-opacity-10 p-3 rounded-circle">
+                                    <i class="fas fa-users text-info fa-2x"></i>
+                                </div>
+                            </div>
+                            <small class="text-muted">+5 this week</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content Tabs -->
+            <ul class="nav nav-tabs mb-4" id="participantTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard" type="button" role="tab">
+                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="workshops-tab" data-bs-toggle="tab" data-bs-target="#workshops" type="button" role="tab">
+                        <i class="fas fa-laptop-code me-2"></i>My Workshops
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="resources-tab" data-bs-toggle="tab" data-bs-target="#resources" type="button" role="tab">
+                        <i class="fas fa-book me-2"></i>Learning Resources
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab">
+                        <i class="fas fa-user me-2"></i>My Profile
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="certificates-tab" data-bs-toggle="tab" data-bs-target="#certificates" type="button" role="tab">
+                        <i class="fas fa-certificate me-2"></i>Certificates
+                    </button>
+                </li>
+            </ul>
+            
+            <!-- Tab Content -->
+            <div class="tab-content" id="participantTabsContent">
+                <!-- Dashboard Tab -->
+                <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
+                    <!-- Upcoming Workshops -->
+                    <div class="card shadow-sm border-0 mb-4">
+                        <div class="card-header bg-light py-3">
+                            <h5 class="mb-0">
+                                <i class="fas fa-calendar-alt me-2 text-primary"></i>Upcoming Workshops
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group">
+                                <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                                    <i class="fas fa-video fa-2x text-primary"></i>
+                                    <div class="d-flex gap-2 w-100 justify-content-between">
+                                        <div>
+                                            <h6 class="mb-0">Introduction to Blockchain</h6>
+                                            <p class="mb-0 text-muted">Tomorrow, 10:00 AM - 12:00 PM EAT</p>
+                                        </div>
+                                        <div>
+                                            <span class="badge bg-primary">Live Session</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                                    <i class="fas fa-code fa-2x text-success"></i>
+                                    <div class="d-flex gap-2 w-100 justify-content-between">
+                                        <div>
+                                            <h6 class="mb-0">Smart Contracts Workshop</h6>
+                                            <p class="mb-0 text-muted">Friday, 2:00 PM - 4:00 PM EAT</p>
+                                        </div>
+                                        <div>
+                                            <span class="badge bg-success">Hands-on</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                                    <i class="fas fa-users fa-2x text-info"></i>
+                                    <div class="d-flex gap-2 w-100 justify-content-between">
+                                        <div>
+                                            <h6 class="mb-0">Women in Blockchain Networking</h6>
+                                            <p class="mb-0 text-muted">Next Monday, 3:00 PM - 5:00 PM EAT</p>
+                                        </div>
+                                        <div>
+                                            <span class="badge bg-info">Networking</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity -->
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-light py-3">
+                            <h5 class="mb-0">
+                                <i class="fas fa-history me-2 text-primary"></i>Recent Activity
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline-activity">
+                                <div class="d-flex mb-4">
+                                    <div class="activity-icon bg-success bg-opacity-10 p-3 rounded-circle me-3">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">Module 4 Completed</h6>
+                                        <p class="text-muted mb-0">Decentralized Applications - 2 hours ago</p>
+                                    </div>
+                                    <div class="ms-auto text-muted">2h</div>
+                                </div>
+                                <div class="d-flex mb-4">
+                                    <div class="activity-icon bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                                        <i class="fas fa-download text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">Resource Downloaded</h6>
+                                        <p class="text-muted mb-0">Blockchain Developer Toolkit - Yesterday</p>
+                                    </div>
+                                    <div class="ms-auto text-muted">1d</div>
+                                </div>
+                                <div class="d-flex mb-4">
+                                    <div class="activity-icon bg-warning bg-opacity-10 p-3 rounded-circle me-3">
+                                        <i class="fas fa-trophy text-warning"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">Certificate Earned</h6>
+                                        <p class="text-muted mb-0">Blockchain Fundamentals - 3 days ago</p>
+                                    </div>
+                                    <div class="ms-auto text-muted">3d</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- My Workshops Tab -->
+                <div class="tab-pane fade" id="workshops" role="tabpanel">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-light py-3">
+                            <h5 class="mb-0">
+                                <i class="fas fa-laptop-code me-2 text-primary"></i>Enrolled Workshops
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <img src="https://via.placeholder.com/400x200/0d6efd/ffffff?text=Blockchain+101" class="card-img-top rounded-top" alt="Workshop">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Blockchain 101</h5>
+                                            <p class="card-text text-muted">Learn the fundamentals of blockchain technology, consensus mechanisms, and cryptography.</p>
+                                            <div class="mb-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <small class="text-muted">Progress</small>
+                                                    <small class="text-muted">100%</small>
+                                                </div>
+                                                <div class="progress" style="height: 5px;">
+                                                    <div class="progress-bar bg-success" style="width: 100%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="badge bg-success">Completed</span>
+                                                <button class="btn btn-sm btn-outline-primary" onclick="viewWorkshop(1)">
+                                                    View Details <i class="fas fa-arrow-right ms-1"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <img src="https://via.placeholder.com/400x200/198754/ffffff?text=Smart+Contracts" class="card-img-top rounded-top" alt="Workshop">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Smart Contract Development</h5>
+                                            <p class="card-text text-muted">Write and deploy smart contracts on Ethereum using Solidity.</p>
+                                            <div class="mb-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <small class="text-muted">Progress</small>
+                                                    <small class="text-muted">75%</small>
+                                                </div>
+                                                <div class="progress" style="height: 5px;">
+                                                    <div class="progress-bar bg-warning" style="width: 75%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="badge bg-warning">In Progress</span>
+                                                <button class="btn btn-sm btn-outline-primary" onclick="continueWorkshop(2)">
+                                                    Continue <i class="fas fa-play ms-1"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <img src="https://via.placeholder.com/400x200/0dcaf0/ffffff?text=DeFi" class="card-img-top rounded-top" alt="Workshop">
+                                        <div class="card-body">
+                                            <h5 class="card-title">DeFi Fundamentals</h5>
+                                            <p class="card-text text-muted">Explore decentralized finance protocols, lending, borrowing, and yield farming.</p>
+                                            <div class="mb-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <small class="text-muted">Progress</small>
+                                                    <small class="text-muted">30%</small>
+                                                </div>
+                                                <div class="progress" style="height: 5px;">
+                                                    <div class="progress-bar bg-info" style="width: 30%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="badge bg-primary">Started</span>
+                                                <button class="btn btn-sm btn-outline-primary" onclick="startWorkshop(3)">
+                                                    Start Learning <i class="fas fa-arrow-right ms-1"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="card h-100 border-0 shadow-sm opacity-50">
+                                        <img src="https://via.placeholder.com/400x200/6c757d/ffffff?text=Upcoming" class="card-img-top rounded-top" alt="Workshop">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Web3 Development</h5>
+                                            <p class="card-text text-muted">Build full-stack dApps with modern Web3 frameworks.</p>
+                                            <div class="mb-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <small class="text-muted">Progress</small>
+                                                    <small class="text-muted">0%</small>
+                                                </div>
+                                                <div class="progress" style="height: 5px;">
+                                                    <div class="progress-bar" style="width: 0%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="badge bg-secondary">Coming Soon</span>
+                                                <button class="btn btn-sm btn-outline-secondary" disabled>
+                                                    Notify Me <i class="fas fa-bell ms-1"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Learning Resources Tab -->
+                <div class="tab-pane fade" id="resources" role="tabpanel">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-light py-3">
+                            <h5 class="mb-0">
+                                <i class="fas fa-book me-2 text-primary"></i>Learning Materials
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-4">
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-file-pdf text-danger fa-3x mb-3"></i>
+                                            <h6>Blockchain Basics Guide</h6>
+                                            <p class="text-muted small">PDF, 2.5 MB</p>
+                                            <button class="btn btn-sm btn-primary w-100" onclick="downloadResource('blockchain-basics')">
+                                                <i class="fas fa-download me-1"></i>Download
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-video text-primary fa-3x mb-3"></i>
+                                            <h6>Smart Contracts Tutorial</h6>
+                                            <p class="text-muted small">Video Series, 45 min</p>
+                                            <button class="btn btn-sm btn-primary w-100" onclick="watchVideo('smart-contracts')">
+                                                <i class="fas fa-play me-1"></i>Watch Now
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-code text-success fa-3x mb-3"></i>
+                                            <h6>Solidity Cheat Sheet</h6>
+                                            <p class="text-muted small">Code Examples</p>
+                                            <button class="btn btn-sm btn-primary w-100" onclick="viewCode('solidity')">
+                                                <i class="fas fa-eye me-1"></i>View
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-chart-bar text-info fa-3x mb-3"></i>
+                                            <h6>DeFi Protocols Guide</h6>
+                                            <p class="text-muted small">PDF, 3.1 MB</p>
+                                            <button class="btn btn-sm btn-primary w-100" onclick="downloadResource('defi-guide')">
+                                                <i class="fas fa-download me-1"></i>Download
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-tasks text-warning fa-3x mb-3"></i>
+                                            <h6>Practice Exercises</h6>
+                                            <p class="text-muted small">Interactive</p>
+                                            <button class="btn btn-sm btn-primary w-100" onclick="startExercises()">
+                                                <i class="fas fa-pencil-alt me-1"></i>Start
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-link text-secondary fa-3x mb-3"></i>
+                                            <h6>Useful Links</h6>
+                                            <p class="text-muted small">Resources</p>
+                                            <button class="btn btn-sm btn-primary w-100" onclick="viewLinks()">
+                                                <i class="fas fa-external-link-alt me-1"></i>Explore
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Profile Tab -->
+                <div class="tab-pane fade" id="profile" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body text-center">
+                                    <div class="profile-avatar mb-3">
+                                        <i class="fas fa-user-circle fa-5x text-primary"></i>
+                                    </div>
+                                    <h4>Jane Wanjiku</h4>
+                                    <p class="text-muted">Participant since March 2024</p>
+                                    <span class="badge bg-success">Verified</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-8">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-header bg-light py-3">
+                                    <h5 class="mb-0">Profile Information</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Full Name</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            Jane Wanjiku
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Email</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            jane.wanjiku@example.com
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Phone</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            +254 712 345 678
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Category</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            Student - Computer Science
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Experience Level</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            Beginner
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-primary" onclick="editProfile()">
+                                                <i class="fas fa-edit me-2"></i>Edit Profile
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificates Tab -->
+                <div class="tab-pane fade" id="certificates" role="tabpanel">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-light py-3">
+                            <h5 class="mb-0">
+                                <i class="fas fa-certificate me-2 text-primary"></i>My Certificates
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="card border-0 shadow-sm">
+                                        <div class="card-body">
+                                            <div class="d-flex">
+                                                <i class="fas fa-award fa-3x text-warning me-3"></i>
+                                                <div>
+                                                    <h5>Blockchain Fundamentals</h5>
+                                                    <p class="text-muted mb-1">Issued: March 10, 2024</p>
+                                                    <p class="text-muted mb-2">Certificate ID: BC-2024-001</p>
+                                                    <button class="btn btn-sm btn-primary" onclick="viewCertificate(1)">
+                                                        <i class="fas fa-eye me-1"></i>View
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-primary" onclick="downloadCertificate(1)">
+                                                        <i class="fas fa-download me-1"></i>PDF
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="card border-0 shadow-sm">
+                                        <div class="card-body">
+                                            <div class="d-flex">
+                                                <i class="fas fa-award fa-3x text-warning me-3"></i>
+                                                <div>
+                                                    <h5>Introduction to Cryptocurrency</h5>
+                                                    <p class="text-muted mb-1">Issued: February 25, 2024</p>
+                                                    <p class="text-muted mb-2">Certificate ID: CR-2024-042</p>
+                                                    <button class="btn btn-sm btn-primary" onclick="viewCertificate(2)">
+                                                        <i class="fas fa-eye me-1"></i>View
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-primary" onclick="downloadCertificate(2)">
+                                                        <i class="fas fa-download me-1"></i>PDF
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Support Card -->
+            <div class="card mt-4 border-primary">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-life-ring text-primary fa-2x me-3"></i>
+                        <div>
+                            <h6 class="fw-bold mb-1">Need Help?</h6>
+                            <p class="text-muted mb-0">
+                                Contact our support team at <a href="mailto:support@womeninblockchain.org">support@womeninblockchain.org</a> 
+                                or join our <a href="#">Telegram group</a> for peer support.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Workshop Details Modal -->
+<div class="modal fade" id="workshopModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Workshop Details</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="workshopDetails">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Participant JavaScript -->
+<script>
+// Navigation functions
+function viewWorkshop(workshopId) {
+    const modal = new bootstrap.Modal(document.getElementById('workshopModal'));
+    document.getElementById('workshopDetails').innerHTML = `
+        <h6>Blockchain 101 - Completed</h6>
+        <p>You've successfully completed this workshop. Download your certificate from the Certificates tab.</p>
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle me-2"></i>Certificate available
+        </div>
+    `;
+    modal.show();
+}
+
+function continueWorkshop(workshopId) {
+    showNotification('Continuing workshop...', 'info');
+    // Redirect to workshop content
+}
+
+function startWorkshop(workshopId) {
+    showNotification('Starting new workshop!', 'success');
+    // Start workshop
+}
+
+function downloadResource(resourceId) {
+    showNotification('Downloading resource...', 'info');
+}
+
+function watchVideo(videoId) {
+    showNotification('Loading video player...', 'info');
+}
+
+function viewCode(codeId) {
+    showNotification('Loading code examples...', 'info');
+}
+
+function startExercises() {
+    showNotification('Loading interactive exercises...', 'info');
+}
+
+function viewLinks() {
+    showNotification('Loading resources...', 'info');
+}
+
+function editProfile() {
+    showNotification('Profile editing feature coming soon!', 'info');
+}
+
+function viewCertificate(certId) {
+    showNotification('Loading certificate...', 'info');
+}
+
+function downloadCertificate(certId) {
+    showNotification('Downloading certificate...', 'info');
+}
+
+// Show notification
+function showNotification(message, type) {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 end-0 m-3`;
+    alertDiv.style.zIndex = '9999';
+    alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    document.body.appendChild(alertDiv);
+    
+    setTimeout(() => {
+        alertDiv.remove();
+    }, 3000);
+}
+
+// Toggle password visibility (if needed in profile settings)
+function togglePasswordVisibility(inputId, button) {
+    const input = document.getElementById(inputId);
+    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+    input.setAttribute('type', type);
+    button.querySelector('i').classList.toggle('fa-eye');
+    button.querySelector('i').classList.toggle('fa-eye-slash');
+}
+
+// Page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize any participant-specific features
+});
+</script>
+
+<!-- Additional CSS -->
+<style>
+.timeline-activity .activity-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-avatar {
+    font-size: 5rem;
+}
+
+/* Card hover effects */
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1) !important;
+}
+
+/* Tab styling */
+.nav-tabs .nav-link {
+    color: #495057;
+    font-weight: 500;
+    border: none;
+    padding: 1rem 1.5rem;
+}
+
+.nav-tabs .nav-link.active {
+    color: #0d6efd;
+    border-bottom: 3px solid #0d6efd;
+    background: transparent;
+}
+
+/* Progress bar animation */
+.progress-bar {
+    transition: width 0.5s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-tabs .nav-link {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .timeline-activity .d-flex {
+        flex-wrap: wrap;
+    }
+}
+</style>
+
+{% endblock %}

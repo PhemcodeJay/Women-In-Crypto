@@ -1,0 +1,932 @@
+<!-- templates/register.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Main Registration Card -->
+            <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
+                <!-- Card Header with Progress -->
+                <div class="card-header bg-primary text-white py-4">
+                    <div class="text-center">
+                        <i class="fas fa-user-plus fa-3x mb-3"></i>
+                        <h2 class="fw-bold mb-2">Join the Initiative</h2>
+                        <p class="text-white-50 mb-0">Empowering women in blockchain technology</p>
+                    </div>
+                    
+                    <!-- Registration Progress Bar -->
+                    <div class="progress mt-4 bg-white bg-opacity-25" style="height: 8px;">
+                        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" 
+                             role="progressbar" 
+                             style="width: 0%;" 
+                             id="registrationProgress"
+                             aria-valuenow="0" 
+                             aria-valuemin="0" 
+                             aria-valuemax="100">
+                        </div>
+                    </div>
+                    <div class="text-end mt-2">
+                        <small class="text-white-50" id="progressText">Step 1 of 4</small>
+                    </div>
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body p-4 p-lg-5">
+                    <!-- Registration Form -->
+                    <form method="POST" 
+                          action="{{ url_for('register') }}" 
+                          enctype="multipart/form-data" 
+                          id="registrationForm"
+                          novalidate>
+                        
+                        <!-- Section 1: Personal Information -->
+                        <div class="registration-section" data-section="1">
+                            <h4 class="text-primary mb-4">
+                                <i class="fas fa-user-circle me-2"></i>Personal Information
+                            </h4>
+                            
+                            <div class="row g-3">
+                                <!-- Full Name -->
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-user me-2 text-primary"></i>Full Name <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="name" 
+                                               id="name"
+                                               placeholder="Enter your full name"
+                                               required 
+                                               maxlength="100">
+                                    </div>
+                                    <div class="invalid-feedback" id="nameError"></div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-envelope me-2 text-primary"></i>Email <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                        <input type="email" 
+                                               class="form-control" 
+                                               name="email" 
+                                               id="email"
+                                               placeholder="you@example.com"
+                                               required>
+                                    </div>
+                                    <div class="invalid-feedback" id="emailError"></div>
+                                </div>
+
+                                <!-- Password -->
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-lock me-2 text-primary"></i>Password <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                        <input type="password" 
+                                               class="form-control" 
+                                               name="password" 
+                                               id="password"
+                                               placeholder="Create a password"
+                                               required 
+                                               minlength="8">
+                                        <button class="btn btn-outline-secondary" 
+                                                type="button" 
+                                                id="togglePassword">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <!-- Password Strength Meter -->
+                                    <div class="mt-2">
+                                        <div class="progress" style="height: 5px;">
+                                            <div class="progress-bar" 
+                                                 id="passwordStrength" 
+                                                 role="progressbar" 
+                                                 style="width: 0%;"
+                                                 aria-valuenow="0" 
+                                                 aria-valuemin="0" 
+                                                 aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                        <small class="text-muted" id="passwordStrengthText"></small>
+                                    </div>
+                                    <div class="invalid-feedback" id="passwordError"></div>
+                                </div>
+
+                                <!-- Confirm Password -->
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-check-circle me-2 text-primary"></i>Confirm Password <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light">
+                                            <i class="fas fa-check-circle"></i>
+                                        </span>
+                                        <input type="password" 
+                                               class="form-control" 
+                                               id="confirmPassword"
+                                               placeholder="Confirm your password"
+                                               required>
+                                    </div>
+                                    <div class="invalid-feedback" id="confirmPasswordError"></div>
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-phone me-2 text-primary"></i>Phone Number
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light">
+                                            <i class="fas fa-phone"></i>
+                                        </span>
+                                        <input type="tel" 
+                                               class="form-control" 
+                                               name="phone" 
+                                               id="phone"
+                                               placeholder="+254 XXX XXX XXX">
+                                    </div>
+                                    <small class="text-muted">Include country code (e.g., +254)</small>
+                                </div>
+
+                                <!-- Age -->
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-calendar me-2 text-primary"></i>Age
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light">
+                                            <i class="fas fa-calendar"></i>
+                                        </span>
+                                        <input type="number" 
+                                               class="form-control" 
+                                               name="age" 
+                                               id="age"
+                                               min="18" 
+                                               max="100"
+                                               placeholder="18-100">
+                                    </div>
+                                    <div class="invalid-feedback" id="ageError"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Workshop Details -->
+                        <div class="registration-section d-none" data-section="2">
+                            <h4 class="text-primary mb-4">
+                                <i class="fas fa-workshop me-2"></i>Workshop Details
+                            </h4>
+                            
+                            <div class="row g-3">
+                                <!-- Category -->
+                                <div class="col-12">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-tag me-2 text-primary"></i>Participant Category <span class="text-danger">*</span>
+                                    </label>
+                                    <select name="category" class="form-select" id="category" required>
+                                        <option value="">Select your category</option>
+                                        <option value="student">Student</option>
+                                        <option value="professional">Professional</option>
+                                        <option value="entrepreneur">Entrepreneur</option>
+                                        <option value="freelancer">Freelancer</option>
+                                        <option value="unemployed">Unemployed / Job Seeker</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <div class="invalid-feedback" id="categoryError"></div>
+                                </div>
+
+                                <!-- Reason for Joining -->
+                                <div class="col-12">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-pen me-2 text-primary"></i>Why do you want to join?
+                                    </label>
+                                    <textarea class="form-control" 
+                                              name="reason" 
+                                              id="reason"
+                                              rows="4"
+                                              placeholder="Tell us why you're interested in blockchain and cryptocurrency..."></textarea>
+                                    <small class="text-muted">
+                                        <span id="reasonCount">0</span>/500 characters
+                                    </small>
+                                </div>
+
+                                <!-- Experience Level -->
+                                <div class="col-12">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-chart-line me-2 text-primary"></i>Experience with Crypto/Blockchain
+                                    </label>
+                                    <div class="row g-2">
+                                        <div class="col">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="experience" id="expBeginner" value="beginner">
+                                                <label class="form-check-label" for="expBeginner">
+                                                    Beginner
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="experience" id="expIntermediate" value="intermediate">
+                                                <label class="form-check-label" for="expIntermediate">
+                                                    Intermediate
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="experience" id="expAdvanced" value="advanced">
+                                                <label class="form-check-label" for="expAdvanced">
+                                                    Advanced
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Document Upload -->
+                        <div class="registration-section d-none" data-section="3">
+                            <h4 class="text-primary mb-4">
+                                <i class="fas fa-file-upload me-2"></i>ID Verification
+                            </h4>
+                            
+                            <div class="row g-3">
+                                <!-- ID Proof Upload -->
+                                <div class="col-12">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-id-card me-2 text-primary"></i>ID Proof (PNG/JPG/PDF) <span class="text-danger">*</span>
+                                    </label>
+                                    
+                                    <!-- Drop Zone -->
+                                    <div class="upload-drop-zone border rounded-3 p-4 text-center mb-3" 
+                                         id="dropZone">
+                                        <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                                        <h5>Drag & drop your ID proof here</h5>
+                                        <p class="text-muted mb-3">or</p>
+                                        <button type="button" class="btn btn-primary" onclick="document.getElementById('id_proof').click();">
+                                            <i class="fas fa-folder-open me-2"></i>Browse Files
+                                        </button>
+                                        <input type="file" 
+                                               class="d-none" 
+                                               name="id_proof" 
+                                               id="id_proof"
+                                               accept=".png,.jpg,.jpeg,.pdf"
+                                               required>
+                                    </div>
+                                    
+                                    <!-- File Preview -->
+                                    <div class="file-preview d-none" id="filePreview">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="fas fa-file-pdf text-danger fa-2x me-3"></i>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1" id="fileName"></h6>
+                                                        <small class="text-muted" id="fileSize"></small>
+                                                    </div>
+                                                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeFile()">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <small class="text-muted">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        Accepted formats: PNG, JPG, JPEG, PDF (Max size: 5MB)
+                                    </small>
+                                    <div class="invalid-feedback" id="fileError"></div>
+                                </div>
+
+                                <!-- ID Type Selection -->
+                                <div class="col-12 mt-3">
+                                    <label class="form-label fw-bold">ID Type</label>
+                                    <div class="row g-2">
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="id_type" id="idNational" value="national" checked>
+                                                <label class="form-check-label" for="idNational">
+                                                    National ID
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="id_type" id="idPassport" value="passport">
+                                                <label class="form-check-label" for="idPassport">
+                                                    Passport
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="id_type" id="idDriver" value="driver">
+                                                <label class="form-check-label" for="idDriver">
+                                                    Driver's License
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 4: Terms & Confirmation -->
+                        <div class="registration-section d-none" data-section="4">
+                            <h4 class="text-primary mb-4">
+                                <i class="fas fa-check-circle me-2"></i>Review & Confirm
+                            </h4>
+                            
+                            <!-- Summary Cards -->
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h6 class="card-title text-primary">
+                                                <i class="fas fa-user me-2"></i>Personal Info
+                                            </h6>
+                                            <p class="mb-1" id="summaryName"></p>
+                                            <p class="mb-1" id="summaryEmail"></p>
+                                            <p class="mb-0" id="summaryPhone"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h6 class="card-title text-primary">
+                                                <i class="fas fa-tag me-2"></i>Workshop Details
+                                            </h6>
+                                            <p class="mb-1" id="summaryCategory"></p>
+                                            <p class="mb-0" id="summaryExperience"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Terms and Conditions -->
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="terms" required>
+                                    <label class="form-check-label" for="terms">
+                                        I confirm that the information provided is accurate and I agree to the 
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a>
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" id="newsletter">
+                                    <label class="form-check-label" for="newsletter">
+                                        I'd like to receive updates about workshops and events
+                                    </label>
+                                </div>
+                                
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" id="dataConsent" required>
+                                    <label class="form-check-label" for="dataConsent">
+                                        I consent to the processing of my personal data as described in the 
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- CAPTCHA (simulated) -->
+                            <div class="captcha-box bg-light p-3 rounded mb-4">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <img src="https://via.placeholder.com/100x40?text=CAPTCHA" alt="CAPTCHA" class="rounded">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Enter the code above" id="captcha">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Buttons -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-outline-secondary" id="prevBtn" onclick="navigateSection(-1)" disabled>
+                                <i class="fas fa-arrow-left me-2"></i>Previous
+                            </button>
+                            
+                            <button type="button" class="btn btn-primary" id="nextBtn" onclick="navigateSection(1)">
+                                Next <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                            
+                            <button type="submit" class="btn btn-success d-none" id="submitBtn">
+                                <i class="fas fa-check-circle me-2"></i>Complete Registration
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Card Footer -->
+                <div class="card-footer bg-light py-3">
+                    <div class="text-center">
+                        <span class="text-muted">Already have an account?</span>
+                        <a href="{{ url_for('login') }}" class="text-primary text-decoration-none ms-2">
+                            Login here <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Requirements Notice -->
+            <div class="card mt-4 border-warning">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-exclamation-triangle text-warning fa-2x me-3"></i>
+                        <div>
+                            <h6 class="fw-bold mb-1">Eligibility Requirements:</h6>
+                            <p class="text-muted mb-0">
+                                Open to women aged 18-30 in Kenya. Basic computer literacy required. 
+                                No prior crypto experience needed!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Terms and Conditions Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Terms and Conditions</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h6>1. Program Eligibility</h6>
+                <p>Participants must be women aged 18-30 residing in Kenya.</p>
+                
+                <h6>2. Commitment</h6>
+                <p>Selected participants must attend all workshop sessions and complete assignments.</p>
+                
+                <h6>3. Code of Conduct</h6>
+                <p>Participants must maintain respectful behavior and follow community guidelines.</p>
+                
+                <!-- Add more terms as needed -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Privacy Policy Modal -->
+<div class="modal fade" id="privacyModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Privacy Policy</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h6>Data Collection</h6>
+                <p>We collect personal information for workshop registration and communication.</p>
+                
+                <h6>Data Protection</h6>
+                <p>Your data is encrypted and never shared with third parties without consent.</p>
+                
+                <!-- Add more privacy details -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Registration Form -->
+<script>
+let currentSection = 1;
+const totalSections = 4;
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize form
+    updateNavigation();
+    initializeValidation();
+    initializeFileUpload();
+    initializePasswordStrength();
+});
+
+// Section navigation
+function navigateSection(direction) {
+    // Validate current section before moving
+    if (direction > 0 && !validateSection(currentSection)) {
+        return;
+    }
+    
+    // Hide current section
+    document.querySelector(`[data-section="${currentSection}"]`).classList.add('d-none');
+    
+    // Update section number
+    currentSection += direction;
+    
+    // Show new section
+    document.querySelector(`[data-section="${currentSection}"]`).classList.remove('d-none');
+    
+    // Update navigation
+    updateNavigation();
+    
+    // Update progress bar
+    updateProgress();
+}
+
+function updateNavigation() {
+    // Update Previous button
+    document.getElementById('prevBtn').disabled = currentSection === 1;
+    
+    // Update Next/Submit buttons
+    if (currentSection === totalSections) {
+        document.getElementById('nextBtn').classList.add('d-none');
+        document.getElementById('submitBtn').classList.remove('d-none');
+    } else {
+        document.getElementById('nextBtn').classList.remove('d-none');
+        document.getElementById('submitBtn').classList.add('d-none');
+    }
+}
+
+function updateProgress() {
+    const progress = (currentSection / totalSections) * 100;
+    const progressBar = document.getElementById('registrationProgress');
+    progressBar.style.width = progress + '%';
+    progressBar.setAttribute('aria-valuenow', progress);
+    document.getElementById('progressText').textContent = `Step ${currentSection} of ${totalSections}`;
+}
+
+// Validation functions
+function validateSection(section) {
+    switch(section) {
+        case 1:
+            return validatePersonalInfo();
+        case 2:
+            return validateWorkshopDetails();
+        case 3:
+            return validateDocuments();
+        default:
+            return true;
+    }
+}
+
+function validatePersonalInfo() {
+    let isValid = true;
+    
+    // Name validation
+    const name = document.getElementById('name');
+    if (!name.value.trim()) {
+        showError('name', 'Full name is required');
+        isValid = false;
+    } else if (name.value.trim().length < 3) {
+        showError('name', 'Name must be at least 3 characters');
+        isValid = false;
+    } else {
+        clearError('name');
+    }
+    
+    // Email validation
+    const email = document.getElementById('email');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.value) {
+        showError('email', 'Email is required');
+        isValid = false;
+    } else if (!emailRegex.test(email.value)) {
+        showError('email', 'Please enter a valid email address');
+        isValid = false;
+    } else {
+        clearError('email');
+    }
+    
+    // Password validation
+    const password = document.getElementById('password');
+    if (!password.value) {
+        showError('password', 'Password is required');
+        isValid = false;
+    } else if (password.value.length < 8) {
+        showError('password', 'Password must be at least 8 characters');
+        isValid = false;
+    } else {
+        clearError('password');
+    }
+    
+    // Confirm password
+    const confirm = document.getElementById('confirmPassword');
+    if (password.value !== confirm.value) {
+        showError('confirmPassword', 'Passwords do not match');
+        isValid = false;
+    } else {
+        clearError('confirmPassword');
+    }
+    
+    // Age validation
+    const age = document.getElementById('age');
+    if (age.value && (age.value < 18 || age.value > 100)) {
+        showError('age', 'Age must be between 18 and 100');
+        isValid = false;
+    } else {
+        clearError('age');
+    }
+    
+    return isValid;
+}
+
+function validateWorkshopDetails() {
+    let isValid = true;
+    
+    const category = document.getElementById('category');
+    if (!category.value) {
+        showError('category', 'Please select a category');
+        isValid = false;
+    } else {
+        clearError('category');
+    }
+    
+    return isValid;
+}
+
+function validateDocuments() {
+    let isValid = true;
+    
+    const file = document.getElementById('id_proof');
+    if (!file.files || !file.files[0]) {
+        showError('file', 'Please upload your ID proof');
+        isValid = false;
+    } else {
+        clearError('file');
+    }
+    
+    return isValid;
+}
+
+function showError(field, message) {
+    const element = document.getElementById(field);
+    element.classList.add('is-invalid');
+    document.getElementById(field + 'Error').textContent = message;
+}
+
+function clearError(field) {
+    const element = document.getElementById(field);
+    element.classList.remove('is-invalid');
+    if (document.getElementById(field + 'Error')) {
+        document.getElementById(field + 'Error').textContent = '';
+    }
+}
+
+// Password strength meter
+function initializePasswordStrength() {
+    const password = document.getElementById('password');
+    password.addEventListener('input', checkPasswordStrength);
+}
+
+function checkPasswordStrength() {
+    const password = document.getElementById('password').value;
+    const strengthBar = document.getElementById('passwordStrength');
+    const strengthText = document.getElementById('passwordStrengthText');
+    
+    let strength = 0;
+    
+    // Length check
+    if (password.length >= 8) strength += 25;
+    if (password.length >= 12) strength += 15;
+    
+    // Character variety
+    if (/[a-z]/.test(password)) strength += 15;
+    if (/[A-Z]/.test(password)) strength += 15;
+    if (/[0-9]/.test(password)) strength += 15;
+    if (/[^a-zA-Z0-9]/.test(password)) strength += 15;
+    
+    // Cap at 100
+    strength = Math.min(strength, 100);
+    
+    // Update UI
+    strengthBar.style.width = strength + '%';
+    
+    let message = '';
+    let color = 'danger';
+    if (strength < 30) {
+        message = 'Weak';
+    } else if (strength < 60) {
+        message = 'Fair';
+        color = 'warning';
+    } else if (strength < 80) {
+        message = 'Good';
+        color = 'info';
+    } else {
+        message = 'Strong';
+        color = 'success';
+    }
+    
+    strengthBar.className = `progress-bar bg-${color}`;
+    strengthText.textContent = `Password strength: ${message}`;
+}
+
+// File upload handling
+function initializeFileUpload() {
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('id_proof');
+    
+    // Prevent default drag behaviors
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+        document.body.addEventListener(eventName, preventDefaults, false);
+    });
+    
+    // Highlight drop zone on drag over
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, highlight, false);
+    });
+    
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, unhighlight, false);
+    });
+    
+    // Handle dropped files
+    dropZone.addEventListener('drop', handleDrop, false);
+    
+    // Handle file selection
+    fileInput.addEventListener('change', handleFileSelect);
+}
+
+function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+function highlight() {
+    document.getElementById('dropZone').classList.add('border-primary', 'bg-light');
+}
+
+function unhighlight() {
+    document.getElementById('dropZone').classList.remove('border-primary', 'bg-light');
+}
+
+function handleDrop(e) {
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    document.getElementById('id_proof').files = files;
+    handleFileSelect();
+}
+
+function handleFileSelect() {
+    const file = document.getElementById('id_proof').files[0];
+    if (!file) return;
+    
+    // Validate file type
+    const validTypes = ['image/png', 'image/jpeg', 'application/pdf'];
+    if (!validTypes.includes(file.type)) {
+        alert('Please upload a valid file type (PNG, JPG, PDF)');
+        return;
+    }
+    
+    // Validate file size (5MB)
+    if (file.size > 5 * 1024 * 1024) {
+        alert('File size must be less than 5MB');
+        return;
+    }
+    
+    // Show preview
+    document.getElementById('fileName').textContent = file.name;
+    document.getElementById('fileSize').textContent = (file.size / 1024).toFixed(2) + ' KB';
+    document.getElementById('filePreview').classList.remove('d-none');
+    document.getElementById('dropZone').classList.add('d-none');
+}
+
+function removeFile() {
+    document.getElementById('id_proof').value = '';
+    document.getElementById('filePreview').classList.add('d-none');
+    document.getElementById('dropZone').classList.remove('d-none');
+}
+
+// Character counter for reason
+document.getElementById('reason')?.addEventListener('input', function() {
+    const count = this.value.length;
+    document.getElementById('reasonCount').textContent = count;
+});
+
+// Form submission
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    if (!validateSection(currentSection)) {
+        e.preventDefault();
+        return;
+    }
+    
+    if (!document.getElementById('terms').checked) {
+        e.preventDefault();
+        alert('Please accept the Terms and Conditions');
+        return;
+    }
+    
+    if (!document.getElementById('dataConsent').checked) {
+        e.preventDefault();
+        alert('Please consent to data processing');
+        return;
+    }
+    
+    // Show loading state
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Registering...';
+    submitBtn.disabled = true;
+});
+
+// Password toggle
+document.getElementById('togglePassword').addEventListener('click', function() {
+    const password = document.getElementById('password');
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    this.querySelector('i').classList.toggle('fa-eye');
+    this.querySelector('i').classList.toggle('fa-eye-slash');
+});
+
+// Update summary
+function updateSummary() {
+    document.getElementById('summaryName').textContent = document.getElementById('name').value;
+    document.getElementById('summaryEmail').textContent = document.getElementById('email').value;
+    document.getElementById('summaryPhone').textContent = document.getElementById('phone').value || 'No phone provided';
+    
+    const category = document.getElementById('category');
+    document.getElementById('summaryCategory').textContent = category.options[category.selectedIndex]?.text || 'Not selected';
+    
+    const experience = document.querySelector('input[name="experience"]:checked');
+    document.getElementById('summaryExperience').textContent = experience ? experience.value : 'Not specified';
+}
+
+// Call updateSummary when navigating to section 4
+document.querySelector('[data-section="4"]').addEventListener('show', updateSummary);
+</script>
+
+<!-- Additional CSS -->
+<style>
+.registration-section {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.upload-drop-zone {
+    border: 2px dashed #dee2e6;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-drop-zone:hover {
+    border-color: var(--primary-color);
+    background-color: #f8f9fa;
+}
+
+.upload-drop-zone.border-primary {
+    background-color: #f0f0ff;
+}
+
+.progress {
+    transition: width 0.3s ease;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.invalid-feedback {
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1.5rem !important;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+}
+</style>
+
+{% endblock %}

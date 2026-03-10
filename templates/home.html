@@ -1,0 +1,258 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Hero Section with East African Women Image -->
+<div class="text-center mb-5 py-5 bg-light rounded-4 shadow-sm position-relative overflow-hidden" 
+     style="background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1527689368864-3a821dbcc34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'); background-size: cover; background-position: center;">
+    <div class="position-relative" style="z-index: 2;">
+        <h1 class="display-4 fw-bold text-primary">Women in Crypto Initiative</h1>
+        <p class="lead text-muted mb-4">
+            Bridging the Digital Financial Gender Gap in Kenya
+        </p>
+        <p class="fs-5 mb-4">
+            Empowering 80–100 young women (18–30) with blockchain, cryptocurrency, and Web3 skills
+        </p>
+        <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-5 py-3">
+            Register Now → Limited Seats!
+        </a>
+    </div>
+</div>
+
+<!-- Image Gallery Section - East African Women in Tech -->
+<div class="row g-3 mb-5">
+    <div class="col-md-4">
+        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
+             class="img-fluid rounded-3 shadow-sm h-100" 
+             alt="Black women collaborating and learning to code together in a workshop"
+             style="object-fit: cover; height: 250px; width: 100%;">
+    </div>
+    <div class="col-md-4">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
+             class="img-fluid rounded-3 shadow-sm h-100" 
+             alt="Group of Black women in tech working together on laptops in modern office"
+             style="object-fit: cover; height: 250px; width: 100%;">
+    </div>
+    <div class="col-md-4">
+        <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
+             class="img-fluid rounded-3 shadow-sm h-100" 
+             alt="Black women in tech workshop discussing and presenting ideas"
+             style="object-fit: cover; height: 250px; width: 100%;">
+    </div>
+</div>
+
+<!-- Main Content Cards -->
+<div class="row g-4">
+
+    <!-- The Challenge with Image -->
+    <div class="col-lg-6">
+        <div class="card h-100 border-primary shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">The Challenge: Gender Gap in Digital Finance</h5>
+            </div>
+            <div class="row g-0">
+                <div class="col-md-5">
+                    <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1738&q=80" 
+                         class="img-fluid rounded-start h-100" 
+                         alt="African woman with phone"
+                         style="object-fit: cover; height: 100%;">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <p>Despite the rise of decentralized finance, women — especially in emerging economies — are being left behind. Key barriers include:</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Limited Access to Education</strong> — Few tailored, beginner-friendly resources on crypto & blockchain</li>
+                            <li class="list-group-item"><strong>Heightened Risk Perception</strong> — Fear of scams, volatility, and complex technology</li>
+                            <li class="list-group-item"><strong>Underrepresentation</strong> — Very few visible female role models and mentors in Web3</li>
+                            <li class="list-group-item"><strong>Missed Economic Opportunity</strong> — Risk of exclusion from new income, investment & entrepreneurship paths</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Goals with Image -->
+    <div class="col-lg-6">
+        <div class="card h-100 border-success shadow-sm">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Our Goals</h5>
+            </div>
+            <div class="row g-0">
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Build foundational knowledge of cryptocurrency, blockchain & DeFi</li>
+                            <li class="list-group-item">Enable participants to securely create & manage crypto wallets + send test transactions</li>
+                            <li class="list-group-item">Drastically improve ability to detect and avoid crypto scams</li>
+                            <li class="list-group-item">Showcase real career, freelancing & entrepreneurial paths in Web3</li>
+                            <li class="list-group-item">Create a supportive peer network + connect to mentors</li>
+                        </ul>
+                        <div class="mt-4 text-center">
+                            <strong class="text-success">Target:</strong> 80–100 young women aged 18–30
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80"
+                         class="img-fluid rounded-end h-100" 
+                         alt="African women celebrating"
+                         style="object-fit: cover; height: 100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workshop Day 1 with Image -->
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-info">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Day 1 – Demystifying the Blockchain</h5>
+            </div>
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" 
+                 class="card-img-top" 
+                 alt="Women learning together"
+                 style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li>→ What is money? From barter to Bitcoin</li>
+                    <li>→ Core concepts: Blockchain, decentralization, cryptography (simplified)</li>
+                    <li>→ Major cryptocurrencies: Bitcoin, Ethereum, stablecoins</li>
+                    <li>→ Hands-on: Exploring real blockchains using explorers</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workshop Day 2 with Image -->
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-warning">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0">Day 2 – Hands-On Crypto & Security First</h5>
+            </div>
+            <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" 
+                 class="card-img-top" 
+                 alt="Women working on laptops"
+                 style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li>→ Wallets: Custodial vs non-custodial, hot vs cold</li>
+                    <li>→ Practical: Set up MetaMask (or similar), secure seed phrase</li>
+                    <li>→ Send & receive small test transactions (covered by project funds)</li>
+                    <li>→ Masterclass: Identify phishing, rug pulls, fake giveaways</li>
+                    <li>→ Best practices: Private key safety, secure social media habits</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workshop Day 3 with Image -->
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-purple">
+            <div class="card-header bg-purple text-white" style="background-color: #6f42c1;">
+                <h5 class="mb-0">Day 3 – Building a Future in Web3</h5>
+            </div>
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80" 
+                 class="card-img-top" 
+                 alt="Women in business meeting"
+                 style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li>→ Overview: DeFi, NFTs, DAOs, Metaverse</li>
+                    <li>→ Real African use-cases relevant to women</li>
+                    <li>→ Career Panel: Women already working in blockchain (devs, community managers, freelancers, investors)</li>
+                    <li>→ Next steps: Learning resources, Discord/Telegram communities, freelance platforms</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonial Section -->
+    <div class="col-12">
+    <div class="card border-primary shadow-sm mt-4">
+        <div class="card-body">
+            <h4 class="text-center text-primary mb-4">What East African Women Are Saying</h4>
+            <div class="row">
+                <!-- Original 1 -->
+                <div class="col-md-6">
+                    <div class="d-flex mb-4">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" 
+                             class="rounded-circle me-3" 
+                             alt="Kenyan woman"
+                             style="width: 80px; height: 80px; object-fit: cover;">
+                        <div>
+                            <p class="fst-italic">"I never thought I could understand crypto until this workshop. Now I'm helping other women in my community learn too!"</p>
+                            <p class="fw-bold mb-0">— Akinyi, 24, Nairobi</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Original 2 -->
+                <div class="col-md-6">
+                    <div class="d-flex mb-4">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" 
+                             class="rounded-circle me-3" 
+                             alt="Tanzanian woman"
+                             style="width: 80px; height: 80px; object-fit: cover;">
+                        <div>
+                            <p class="fst-italic">"The security training alone was worth it. I almost fell for a crypto scam last year - now I know exactly what to look for."</p>
+                            <p class="fw-bold mb-0">— Fatima, 28, Mombasa</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- New testimonial 1 -->
+                <div class="col-md-6">
+                    <div class="d-flex mb-4">
+                        <img src="https://sheleadsafrica.org/wp-content/uploads/2017/07/IMG_0768-1-e1502640184133.jpg" 
+                             class="rounded-circle me-3" 
+                             alt="East African woman"
+                             style="width: 80px; height: 80px; object-fit: cover;">
+                        <div>
+                            <p class="fst-italic">"This program gave me the confidence to start investing in crypto safely. I've already seen real growth in my portfolio!"</p>
+                            <p class="fw-bold mb-0">— Aisha, 26, Dar es Salaam</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- New testimonial 2 -->
+                <div class="col-md-6">
+                    <div class="d-flex mb-4">
+                        <img src="https://200youngsouthafricans.co.za/wp-content/uploads/2020/09/Doreen-Mokoena.jpeg" 
+                             class="rounded-circle me-3" 
+                             alt="East African woman"
+                             style="width: 80px; height: 80px; object-fit: cover;">
+                        <div>
+                            <p class="fst-italic">"From zero knowledge to building my first wallet and trading — the hands-on sessions made all the difference. Highly recommend!"</p>
+                            <p class="fw-bold mb-0">— Lerato, 30, Kampala</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Pilot Summary & Call to Action -->
+    <div class="col-12">
+        <div class="card text-center border-primary shadow-lg mt-4">
+            <div class="card-body py-5">
+                <h3 class="text-primary mb-4">Pilot Workshop – Nairobi / Kajiado County</h3>
+                <p class="lead mb-4">
+                    <strong>Total budget:</strong> KES 250,000
+                </p>
+                <div class="d-flex justify-content-center gap-4 flex-wrap">
+                    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-5">
+                        Apply to Join the Workshop
+                    </a>
+                    <a href="{{ url_for('donate') }}" class="btn btn-outline-primary btn-lg px-5">
+                        Support the Initiative
+                    </a>
+                </div>
+                <p class="mt-4 text-muted">
+                    First cohort launching soon – be part of the change!
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
